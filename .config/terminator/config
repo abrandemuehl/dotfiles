@@ -1,0 +1,50 @@
+[global_config]
+  enabled_plugins = LaunchpadCodeURLHandler, APTURLHandler, LaunchpadBugURLHandler
+[keybindings]
+  next_tab = <Primary>Tab
+  close_window = None
+  move_tab_right = <Ctrl><Shift>Right
+  resize_left = <Primary><Shift>Left
+  broadcast_all = None
+  rotate_ccw = None
+  move_tab_left = <Ctrl><Shift>Left
+  go_right = <Primary><Shift>l
+  new_tab = <Ctrl>T
+  resize_right = <Primary><Shift>Right
+  group_all = None
+  toggle_zoom = <Primary>g
+  scaled_zoom = None
+  resize_down = <Primary><Shift>Down
+  full_screen = <Ctrl><Shift>F11
+  prev_tab = <Primary><Shift>Tab
+  switch_to_tab_4 = None
+  split_vert = <Ctrl>I
+  ungroup_all = <Super>g
+  close_term = <Ctrl>W
+  go_left = <Primary><Shift>h
+  hide_window = F1
+  go_up = <Primary><Shift>k
+  resize_up = <Primary><Shift>Up
+  rotate_cw = None
+  split_horiz = <Ctrl>O
+  go_down = <Primary><Shift>j
+  new_window = <Ctrl>N
+[profiles]
+  [[default]]
+    palette = "#000000:#cd0000:#00cd00:#cdcd00:#1e90ff:#cd00cd:#00cdcd:#e5e5e5:#4c4c4c:#ff0000:#00ff00:#ffff00:#4682b4:#ff00ff:#00ffff:#ffffff"
+    background_image = None
+    scrollback_lines = 1000
+    use_system_font = False
+    foreground_color = "#ffffff"
+    font = Monospace 11
+    background_color = "#300a24"
+    scrollback_infinite = True
+[layouts]
+  [[default]]
+    [[[child0]]]
+      position = 1440:0
+      type = Window
+      order = 0
+      parent = ""
+      size = 800, 525
+[plugins]
