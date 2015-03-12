@@ -124,15 +124,15 @@ export TERM=xterm-256color
 
 source ~/.bashrc.local
 
-if [ ! -f ~/.vim ]; then
-    mkdir ~/.vim
-    mkdir ~/.vim/bundle
-    git clone https://github.com/gmarik/Vundle.vim ~/.vim/bundle/
-fi
-
-if [ ! -f ~/.nvimrc ] && [ ! -f ~/.nvim ]; then
-    command -v foo >/dev/null 2>&1 || { ln -s .vimrc .nvimrc; ln -s .vim .nvim; };
-fi
+#if [ ! -f ~/.vim ]; then
+#    mkdir ~/.vim
+#    mkdir ~/.vim/bundle
+#    git clone https://github.com/gmarik/Vundle.vim ~/.vim/bundle/
+#fi
+#
+#if [ ! -f ~/.nvimrc ] && [ ! -f ~/.nvim ]; then
+#    command -v foo >/dev/null 2>&1 || { ln -s .vimrc .nvimrc; ln -s .vim .nvim; };
+#fi
 
 
 #export EDITOR=emacsclient
