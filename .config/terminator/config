@@ -3,11 +3,11 @@
 [keybindings]
   next_tab = <Primary>Tab
   close_window = None
-  move_tab_right = <Ctrl><Shift>Right
+  move_tab_right = None
   resize_left = <Primary><Shift>Left
   broadcast_all = None
   rotate_ccw = None
-  move_tab_left = <Ctrl><Shift>Left
+  move_tab_left = None
   go_right = <Primary><Shift>l
   new_tab = <Ctrl>T
   resize_right = <Primary><Shift>Right
@@ -29,6 +29,7 @@
   split_horiz = <Ctrl>O
   go_down = <Primary><Shift>j
   new_window = <Ctrl>N
+  reset_clear = None
 [profiles]
   [[default]]
     palette = "#000000:#cd0000:#00cd00:#cdcd00:#1e90ff:#cd00cd:#00cdcd:#e5e5e5:#4c4c4c:#ff0000:#00ff00:#ffff00:#4682b4:#ff00ff:#00ffff:#ffffff"

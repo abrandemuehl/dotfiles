@@ -156,6 +156,7 @@ nnoremap <Up> gk
 vnoremap <Down> gj
 vnoremap <Up> gk
 nmap m %
+nnoremap Y y$
 
 if bufwinnr(1)
     map + <C-W>>

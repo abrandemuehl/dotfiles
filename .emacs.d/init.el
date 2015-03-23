@@ -5,41 +5,30 @@
 
 ;; Packages to maintain
 
-(defvar abrandemuehl/packages '(ac-slime
-                                 auto-complete
-                                 autopair
-                                 clojure-mode
-                                 color-theme-approximate
-                                 evil
-                                 evil-leader
-                                 evil-tabs
-                                 feature-mode
-                                 flycheck
-                                 gist
-                                 go-mode
-                                 jedi
-                                 js3-mode
-                                 magit
-                                 marmalade
-                                 nodejs-repl
-                                 paredit
-                                 php-mode
-                                 python-mode
-                                 restclient
-                                 rvm
-                                 smex
-                                 solarized-theme
-				 tabbar
-				 tss
-                                 rainbow-mode
-                                 ruby-mode
-                                 web-mode
-                                 yaml-mode)
+(defvar abrandemuehl/packages '(
+                                async
+                                auto-complete
+                                color-theme-approximate
+                                evil
+                                evil-leader
+                                evil-tabs
+                                evil-surround
+                                helm
+                                jedi
+                                magit
+                                monokai-theme
+                                tabbar
+                                web-mode
+                                )
   "Default packages")
+
 
 ; Remove Startup Message / Splash Page
 (setq inhibit-startup-message t
       initial-scratch-message nil)
+
+(setq x-select-enable-clipboard t)
+(setq interprogram-paste-function 'x-cut-buffer-or-selection-value)
 
 (setenv "PATH" (concat "/usr/local/bin:/usr/bin:/bin" (getenv "PATH")))
 (require 'cl)
@@ -98,16 +87,30 @@ re-downloaded in order to locate PACKAGE."
 (setq linum-format "%4d\u2502 ")
 
 (evil-mode t)
+
+(defvar --backup-directory (concat user-emacs-directory "backups"))
+(if (not (file-exists-p --backup-directory))
+  (make-directory --backup-directory t))
+
+(setq backup-directory-alist
+            `((".*" . ,--backup-directory)))
+(setq auto-save-file-name-transforms
+            `((".*" ,--backup-directory t)))
+
+
+
 ;; Should allow me to use evil mode in minibuffers
 (setq evil-motion-state-modes (append evil-emacs-state-modes evil-motion-state-modes))
 (setq evil-emacs-state-modes nil)
 
-;; Add themes folder 
-(add-to-list 'custom-theme-load-path "~/.emacs.d/themes/")
 
 ;; Set default theme
 ;; (setq molokai-theme-kit t)
 (load-theme 'monokai t)
+
+
+;; Place all backup files in ~/.backups
+(setq backup-directory-alist `(("." . "~/.backups")))
 
 ;; Highlight current line
 (global-hl-line-mode 1)
@@ -115,6 +118,11 @@ re-downloaded in order to locate PACKAGE."
 
 ;; Enables auto complete on all files
 (global-auto-complete-mode t)
+
+;; Turns on evil surround
+(require 'evil-surround)
+(global-evil-surround-mode 1)
+
 
 ;; Open maximised
 (custom-set-variables
@@ -177,16 +185,71 @@ re-downloaded in order to locate PACKAGE."
 	       ))
 
 
+(require 'tabbar)
+(tabbar-mode t)
+(set-face-attribute
+   'tabbar-default nil
+    :background "gray20"
+     :foreground "gray20"
+      :box '(:line-width 1 :color "gray20" :style nil))
+(set-face-attribute
+   'tabbar-unselected nil
+    :background "gray30"
+     :foreground "white"
+      :box '(:line-width 5 :color "gray30" :style nil))
+(set-face-attribute
+   'tabbar-selected nil
+    :background "gray75"
+     :foreground "black"
+      :box '(:line-width 5 :color "gray75" :style nil))
+(set-face-attribute
+   'tabbar-highlight nil
+    :background "white"
+     :foreground "black"
+      :underline nil
+       :box '(:line-width 5 :color "white" :style nil))
+(set-face-attribute
+   'tabbar-button nil
+    :box '(:line-width 1 :color "gray20" :style nil))
+(set-face-attribute
+   'tabbar-separator nil
+    :background "gray20"
+     :height 0.6)
+(custom-set-variables
+   '(tabbar-separator (quote (0.5))))
+(defun tabbar-buffer-tab-label (tab)
+  "Return a label for TAB.
+  That is, a string used to represent it on the tab bar."
+  (let ((label  (if tabbar--buffer-show-groups
+                  (format "  [%s]  " (tabbar-tab-tabset tab))
+                  (format "  %s  " (tabbar-tab-value tab)))))
+    ;; Unless the tab bar auto scrolls to keep the selected tab
+    ;; visible, shorten the tab label to keep as many tabs as possible
+    ;; in the visible area of the tab bar.
+    (if tabbar-auto-scroll-flag
+      label
+      (tabbar-shorten
+        label (max 1 (/ (window-width)
+                        (length (tabbar-view
+                                  (tabbar-current-tabset)))))))))
+
+(define-key evil-normal-state-map (kbd "<backtab>") 'tabbar-backward-tab)
+(define-key evil-normal-state-map (kbd "TAB") 'tabbar-forward-tab)
+
+;; Set tab to be 4 spaces
+(setq-default indent-tabs-mode t)
+(setq-default tab-width 4)
+(setq indent-line-function 'insert-tab)
+
 ;; Line Numbers on
 (global-linum-mode t)
 
 ;; Add tabs mode
-(global-evil-tabs-mode t)
+;(global-evil-tabs-mode t)
 
 ;; Evil mode settings
 (global-evil-leader-mode)
 (evil-leader/set-leader ",")
-
 
 ;; Evil mode key bindings
 
@@ -212,6 +275,7 @@ re-downloaded in order to locate PACKAGE."
 ;; Redefine Ctrl-Space to M-x
 (define-key evil-normal-state-map (kbd "C-SPC") 'execute-extended-command)
 (define-key evil-insert-state-map (kbd "C-SPC") 'execute-extended-command)
+(global-set-key (kbd "C-SPC") 'execute-extended-command)
 
 ;; esc quits
 (defun minibuffer-keyboard-quit ()
