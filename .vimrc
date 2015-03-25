@@ -63,7 +63,6 @@ set smartcase
 set autoindent
 set ruler
 set confirm
-set mouse=v
 set backspace=2
 set number
 set expandtab
@@ -80,7 +79,7 @@ set background=dark
 set completeopt=menu
 set lazyredraw
 
-
+let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'
 
 " vim-airline configuration
 let g:airline#extensions#tabline#enabled = 1
