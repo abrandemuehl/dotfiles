@@ -123,6 +123,7 @@ export TERM=xterm-256color
 
 
 source ~/.bashrc.local
+export TERMINAL=konsole
 
 #if [ ! -f ~/.vim ]; then
 #    mkdir ~/.vim
