@@ -9,37 +9,45 @@
 # layout, use the i3-config-wizard
 #
 
+set $background $HOME/Pictures/Wallpapers/Arrows.png
+set $lock $HOME/Pictures/Wallpapers/square.png
 
 ###############################################################################
 #                           Startup Applications                              #
 ###############################################################################
-exec --no-startup-id gnome-settings-daemon
 exec --no-startup-id nm-applet
-exec --no-start-id gnome-sound-applet
+exec --no-startup-id pa-applet
+exec --no-startup-id feh --bg-fill $background
+exec --no-startup-id mopidy
+exec --no-startup-id i3-msg 'workspace 3; exec konsole -e ncmpcpp'
+exec --no-startup-id /usr/lib/gnome-settings-daemon/gnome-settings-daemon
+
+# Uncomment to allow transparency
+#exec --no-startup-id xcompmgr -a
 
 
 ###############################################################################
 #                              Basic Configs                                  #
 ###############################################################################
 
-
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below. ISO 10646 = Unicode
-font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
+# font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
 # The font above is very space-efficient, that is, it looks good, sharp and
 # clear in small sizes. However, if you need a lot of unicode glyphs or
 # right-to-left text rendering, you should instead use pango for rendering and
 # chose a FreeType font, such as:
 # font pango:DejaVu Sans Mono 10
+font pango:Droid Sans 11px
 
 # use Mouse+Mod1 to drag floating windows to their wanted position
 floating_modifier Mod1
 
 # start a terminal
-bindsym Mod1+Return exec i3-sensible-terminal
+bindsym Mod1+Return exec --no-startup-id konsole #i3-sensible-terminal
 
 # kill focused window
-bindsym Mod1+shift+q kill
+bindsym Mod1+q kill
 
 # start dmenu (a program launcher)
 # bindsym Mod1+d exec dmenu_run
@@ -47,7 +55,7 @@ bindsym Mod1+shift+q kill
 # There also is the (new) i3-dmenu-desktop which only displays applications
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
 # installed.
-bindsym Mod1+d exec --no-startup-id i3-dmenu-desktop
+bindsym Mod1+d exec --no-startup-id j4-dmenu-desktop
 
 # change focus
 bindsym Mod1+h focus left
@@ -110,9 +118,6 @@ bindsym Mod1+minus scratchpad show
 bindsym Mod1+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym Mod1+Shift+r restart
-# exit i3 (logs you out of your X session)
-bindsym Mod1+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
-
 
 
 # resize window (you can also use the mouse for that)
@@ -142,11 +147,12 @@ mode "resize" {
 bindsym Mod1+r mode "resize"
 
 # Set sound and brightness buttons to work
-bindsym XF86AudioRaiseVolume exec amixer -D pulse sset Master 3%+
-bindsym XF86AudioLowerVolume exec amixer -D pulse sset Master 3%-
-bindsym XF86AudioMute exec amixer -D pulse set Master 1+ toggle
-bindsym XF86MonBrightnessUp exec xbacklight -inc 10
-bindsym XF86MonBrightnessDown exec xbacklight -dec 10
+#bindsym XF86AudioRaiseVolume exec amixer -D pulse sset Master 3%+
+#bindsym XF86AudioLowerVolume exec amixer -D pulse sset Master 3%-
+#bindsym XF86AudioMute exec amixer -D pulse set Master 1+ toggle
+bindsym XF86MonBrightnessUp exec --no-startup-id xbacklight -inc 10
+bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -dec 10
+
 
 # switch to workspace
 bindsym Mod1+1 workspace 1
@@ -161,47 +167,93 @@ bindsym Mod1+9 workspace 9
 bindsym Mod1+0 workspace 10
 
 # move focused container to workspace
-bindsym Mod1+Shift+1 move container to workspace 1
-bindsym Mod1+Shift+2 move container to workspace 2
-bindsym Mod1+Shift+3 move container to workspace 3
-bindsym Mod1+Shift+4 move container to workspace 4
-bindsym Mod1+Shift+5 move container to workspace 5
-bindsym Mod1+Shift+6 move container to workspace 6
-bindsym Mod1+Shift+7 move container to workspace 7
-bindsym Mod1+Shift+8 move container to workspace 8
-bindsym Mod1+Shift+9 move container to workspace 9
-bindsym Mod1+Shift+0 move container to workspace 10
+bindsym Mod1+Shift+1 move container to workspace 1; workspace 1
+bindsym Mod1+Shift+2 move container to workspace 2; workspace 2
+bindsym Mod1+Shift+3 move container to workspace 3; workspace 3
+bindsym Mod1+Shift+4 move container to workspace 4; workspace 4
+bindsym Mod1+Shift+5 move container to workspace 5; workspace 5
+bindsym Mod1+Shift+6 move container to workspace 6; workspace 6
+bindsym Mod1+Shift+7 move container to workspace 7; workspace 7
+bindsym Mod1+Shift+8 move container to workspace 8; workspace 8
+bindsym Mod1+Shift+9 move container to workspace 9; workspace 9
+bindsym Mod1+Shift+0 move container to workspace 10; workspace 10
 
 
 # Assign types of windows to workspaces
-assign [class="Konsole|Terminator"] workspace 1
-assign [class="Google Chrome|Chromium|Firefox|Navigator|Iceweasel"] workspace 2
-assign [class="Spotify|Skype"] workspace 3
-
-# Window specific configs
-for_window [class="Google Chrome|Chromium|Iceweasel|Firefox|Navigator"] border none, focus, layout tabbed
+assign [class="Chromium|Firefox"] 2
+assign [class="Spotify|Skype"] 3
 
 
+# Remove space taking title bar
+for_window [class="^Chrome$" title=" - Chromium$"] border none
+for_window [class="konsole"] border  pixel
+# Float things with title float
+for_window [title="^float$"] floating enable
 
+new_window 1pixel
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 bar {
-  position top
+    status_command $HOME/.i3/conky-i3bar
+#    status_command i3status -c ~/.i3/i3status.conf
+    position top
     mode dock
     workspace_buttons yes
-    #strip_workspace_numbers yes
-    status_command i3status -c ~/.i3/i3status.conf
-  colors {
-    separator #888888
-    background #333333
-    statusline #FFFFFF
-    focused_workspace #4E9C00 #4E9C00 #FFFFFF
-    active_workspace #333333 #333333 #FFFFFF
-    inactive_workspace #333333 #333333 #888888
-    urgent_workspace #C20000 #C20000 #FFFFFF
-  }
+    colors {
+        separator #888888
+            background #333333
+            statusline #FFFFFF
+            focused_workspace #4E9C00 #4E9C00 #FFFFFF
+            active_workspace #333333 #333333 #FFFFFF
+            inactive_workspace #333333 #333333 #888888
+            urgent_workspace #C20000 #C20000 #FFFFFF
+    }
 }
 
+set $mode_system System (l) lock, (e) logout, (s) suspend, (h) hibernate, (r) reboot, (Shift+s) shutdown
+mode "$mode_system" {
+    bindsym l exec --no-startup-id i3exit lock $lock, mode "default";
+    bindsym e exec --no-startup-id i3exit logout, mode "default";
+    bindsym s exec --no-startup-id i3exit suspend, mode "default";
+    bindsym h exec --no-startup-id i3exit hibernate, mode "default";
+    bindsym r exec --no-startup-id i3exit reboot, mode "default";
+    bindsym Shift+s exec --no-startup-id i3exit shutdown, mode "default";
+
+    # back to normal: Enter or Escape
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+bindsym Mod1+Shift+e mode "$mode_system";
+#
+# exit i3 (logs you out of your X session)
+#bindsym Mod1+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
+
+#######################################################################
+#                           MISC                                      #
+#######################################################################
+
+# Lock the screen using i3lock
+bindsym Control+l exec --no-startup-id i3exit lock
+
+# Open chromium
+bindsym Mod1+g exec --no-startup-id chromium
+
+# Open ncmpcpp
+bindsym Mod1+m exec --no-startup-id konsole -e ncmpcpp
+
+# Screenshot
+bindsym Control+Mod1+p exec --no-startup-id gnome-screenshot
+
+# Play and pause music
+bindsym Control+Mod1+End exec --no-startup-id mpc toggle
+
+# Tab cycling
+bindsym Mod1+Tab exec $HOME/.i3/focus next
+bindsym Mod1+Shift+Tab exec $HOME/.i3/focus previous
+
+# Open a floating terminal
+bindsym Mod1+Shift+Return exec --no-startup-id 'konsole --title float'
+# -e "i3-msg mark konsole; i3-msg \'[con_mark=\'konsole\'] floating enable\'"
 
 #######################################################################
 # automatically start i3-config-wizard to offer the user to create a

@@ -1,5 +1,6 @@
 set nocompatible
 set rtp+=~/.vim/bundle/Vundle.vim
+set encoding=utf-8
 
 " Set up vim plugins
 call vundle#rc('~/.vim/bundle')
@@ -42,6 +43,7 @@ Bundle 'ervandew/supertab'
 
 " Color scheme installs
 Bundle 'mopp/mopkai.vim'
+Bundle 'chriskempson/base16-vim'
 
 syntax on
 
@@ -65,10 +67,13 @@ set ruler
 set confirm
 set backspace=2
 set number
+
+" Tab settings
 set expandtab
 set smarttab
 set shiftwidth=4
-set softtabstop=4
+set tabstop=4
+
 set autochdir
 set cursorline
 set novisualbell
@@ -79,24 +84,34 @@ set background=dark
 set completeopt=menu
 set lazyredraw
 
+let base16colorspace=256
+colorscheme mopkai
+let g:airline_theme = 'powerlineish'
+
+
 let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'
 
 " vim-airline configuration
+let g:airline_right_alt_sep = ''
+let g:airline_right_sep = ''
+let g:airline_left_alt_sep= ''
+let g:airline_left_sep = ''
 let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tabline#left_sep = ' '
-let g:airline#extensions#tabline#left_alt_sep = '|'
-let g:airline#extensions#tabline#fnamemod = ':t'
-let g:airline_left_sep=' '
-let g:airline_right_sep=' '
-let g:airline_theme = 'airlineish'
-let g:airline_exclude_preview=1
-let g:airline_section_b = '%{strftime("%m/%d %X (%Z)")}'
-"let g:airline_section_gutter = '%<%F'
-let g:airline_section_c = '%F'
-let g:airline_section_y = '%l,%c %P'
-let g:airline_section_z = '%{FileSize()}'
-"let g:airline_section_gutter = ''
-let g:airline_section_warning = ''
+let g:airline_powerline_fonts = 1
+"let g:airline#extensions#tabline#left_sep = ' '
+"let g:airline#extensions#tabline#left_alt_sep = '|'
+"let g:airline#extensions#tabline#fnamemod = ':t'
+"let g:airline_left_sep=' '
+"let g:airline_right_sep=' '
+"let g:airline_theme = 'airlineish'
+"let g:airline_exclude_preview=1
+""let g:airline_section_b = '%{strftime("%m/%d %X (%Z)")}'
+""let g:airline_section_gutter = '%<%F'
+"let g:airline_section_c = '%F'
+"let g:airline_section_y = '%l,%c %P'
+"let g:airline_section_z = '%{FileSize()}'
+""let g:airline_section_gutter = ''
+"let g:airline_section_warning = ''
 let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
 let g:airline_detect_modified=1
 let g:airline#extensions#default#section_truncate_width = {
@@ -104,7 +119,6 @@ let g:airline#extensions#default#section_truncate_width = {
       \ 'y': 60,
       \ }
 
-colorscheme mopkai
 "let g:ycm_add_preview_to_completeopt=0
 
 let g:SuperTabDefaultCompletionType = '<C-n>'
@@ -121,15 +135,17 @@ let g:session_autoload = 'yes'
 map <C-s> :SaveSession!<CR>
 map <C-d> :OpenSession<CR>
 
+let mapleader = ","
 "inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 " use jk to esc in insert mode
 inoremap jk <esc>
+nnoremap ; :
 let g:ctrlp_map = '<c-p>'
+"nnoremap <C-@> :NerdTreeToggle<CR>
 highlight Comment ctermfg=blue
 vmap v <Plug>(expand_region_expand)
 vmap <C-v> <Plug>(expand_region_shrink)
 nnoremap <silent> <leader><esc> :noh<return><esc>
-nnoremap <C-@> :NERDTreeToggle<CR>
 nnoremap J <C-w>j
 nnoremap K <C-w>k
 nnoremap H <C-w>h
@@ -154,7 +170,6 @@ nnoremap <Down> gj
 nnoremap <Up> gk
 vnoremap <Down> gj
 vnoremap <Up> gk
-nmap m %
 nnoremap Y y$
 
 if bufwinnr(1)
@@ -217,3 +232,31 @@ nmap <F1> <nop>
 imap <F1> <nop>
 vmap <F1> <nop>
 
+function! RangeChooser()
+    let temp = tempname()
+    " The option "--choosefiles" was added in ranger 1.5.1. Use the next line
+    " with ranger 1.4.2 through 1.5.0 instead.
+    "exec 'silent !ranger --choosefile=' . shellescape(temp)
+    exec 'silent !ranger --choosefiles=' . shellescape(temp)
+    if !filereadable(temp)
+        redraw!
+        " Nothing to read.
+        return
+    endif
+    let names = readfile(temp)
+    if empty(names)
+        redraw!
+        " Nothing to open.
+        return
+    endif
+    " Edit the first item.
+    exec 'edit ' . fnameescape(names[0])
+    " Add any remaning items to the arg list/buffer list.
+    for name in names[1:]
+        exec 'argadd ' . fnameescape(name)
+    endfor
+    redraw!
+endfunction
+command! -bar RangerChooser call RangeChooser()
+nnoremap <leader>r :<C-U>RangerChooser<CR>
+nnoremap <C-@> :<C-U>RangerChooser<CR>

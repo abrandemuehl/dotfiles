@@ -1,0 +1,39 @@
+#!/usr/bin/python
+import i3
+import sys
+
+
+def focus_next():
+    num = i3.filter(i3.get_workspaces(), focused=True)[0]['num']
+    ws_nodes = i3.filter(num=num)[0]['nodes']
+    curr = i3.filter(ws_nodes, focused=True)[0]
+
+    ids = [win['id'] for win in i3.filter(ws_nodes, nodes=[])]
+
+    next_idx = (ids.index(curr['id']) + 1) % len(ids)
+    next_id = ids[next_idx]
+
+    i3.focus(con_id=next_id)
+
+def focus_previous():
+    num = i3.filter(i3.get_workspaces(), focused=True)[0]['num']
+    ws_nodes = i3.filter(num=num)[0]['nodes']
+    curr = i3.filter(ws_nodes, focused=True)[0]
+
+    ids = [win['id'] for win in i3.filter(ws_nodes, nodes=[])]
+
+    next_idx = (ids.index(curr['id']) - 1) % len(ids)
+    next_id = ids[next_idx]
+
+    i3.focus(con_id=next_id)
+
+
+
+OPTIONS = {"next":focus_next, "previous":focus_previous}
+if __name__ == "__main__":
+
+    if(len(sys.argv) != 2):
+        print(sys.argv[0] + ": " + "|".join(OPTIONS.keys()))
+        sys.exit(0)
+    if(sys.argv[1] in OPTIONS.keys()):
+        OPTIONS[sys.argv[1]]()

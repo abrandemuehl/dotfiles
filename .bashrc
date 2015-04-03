@@ -53,12 +53,12 @@ if [ -n "$force_color_prompt" ]; then
     fi
 fi
 
-if [ "$color_prompt" = yes ]; then
-    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
-else
-    PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
-fi
-unset color_prompt force_color_prompt
+# if [ "$color_prompt" = yes ]; then
+#     PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
+# else
+#     PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
+# fi
+# unset color_prompt force_color_prompt
 
 # If this is an xterm set the title to user@host:dir
 case "$TERM" in
@@ -110,13 +110,15 @@ fi
 # Allow usage of Ctrl-s in vim
 stty -ixon
 
+export PS1="\u@\h:\w$ "
 
 alias ls="ls --color=auto"
 alias files="nautilus ."
 alias gitcd="cd \"\$(git rev-parse --show-toplevel)\""
+alias ':q'=exit
 
 export ews="brandem2@remlnx.ews.illinois.edu"
-export JAVA_HOME="/usr/lib/jvm/java-7-openjdk-amd64"
+export WORKON_HOME=~/.virtualenvs
 
 
 export TERM=xterm-256color
@@ -124,16 +126,8 @@ export TERM=xterm-256color
 
 source ~/.bashrc.local
 export TERMINAL=konsole
+export EDITOR=vim
 
-#if [ ! -f ~/.vim ]; then
-#    mkdir ~/.vim
-#    mkdir ~/.vim/bundle
-#    git clone https://github.com/gmarik/Vundle.vim ~/.vim/bundle/
-#fi
-#
-#if [ ! -f ~/.nvimrc ] && [ ! -f ~/.nvim ]; then
-#    command -v foo >/dev/null 2>&1 || { ln -s .vimrc .nvimrc; ln -s .vim .nvim; };
-#fi
 
 
 #export EDITOR=emacsclient
