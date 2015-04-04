@@ -105,14 +105,14 @@ let g:airline_powerline_fonts = 1
 "let g:airline_right_sep=' '
 "let g:airline_theme = 'airlineish'
 "let g:airline_exclude_preview=1
-""let g:airline_section_b = '%{strftime("%m/%d %X (%Z)")}'
-""let g:airline_section_gutter = '%<%F'
+"let g:airline_section_b = '%{strftime("%m/%d %X (%Z)")}'
+"let g:airline_section_gutter = '%<%F'
 "let g:airline_section_c = '%F'
 "let g:airline_section_y = '%l,%c %P'
 "let g:airline_section_z = '%{FileSize()}'
 ""let g:airline_section_gutter = ''
 "let g:airline_section_warning = ''
-let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
+let g:airline#extensions#tabline#formatter = 'unique_tail'
 let g:airline_detect_modified=1
 let g:airline#extensions#default#section_truncate_width = {
       \ 'b': 90,

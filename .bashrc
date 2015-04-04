@@ -133,11 +133,10 @@ export EDITOR=vim
 #export EDITOR=emacsclient
 #export ALTERNATIVE_EDITOR=""
 
+alias emax="emacsclient -t"
 # Start emacs daemon if not started
-#if ! [[ $(ps -eaf | grep  "emacs") == *"emacs --daemon"* ]]
-#then
-#    emacs --daemon $1 >/dev/null 2>&1
-#    echo "Starting emacs daemon"
-#fi
+if ! ps aux | grep "[e]macs --daemon" > /dev/null
+then
+    emacs --daemon #$1 >/dev/null 2>&1
+fi
 
-#alias emacs="emacsclient -t"
