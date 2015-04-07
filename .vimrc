@@ -26,6 +26,7 @@ Bundle 'marijnh/tern_for_vim'
 Bundle 'leafgarland/typescript-vim'
 Bundle 'mxw/vim-jsx'
 Bundle 'SirVer/ultisnips'
+Bundle 'kshenoy/vim-signature'
 Bundle 'paranoida/vim-airlineish'
 Bundle 'altercation/vim-colors-solarized'
 Bundle 'terryma/vim-expand-region'
@@ -226,6 +227,9 @@ if has('nvim')
     vnoremap <silent> y y:call ClipboardYank()<cr>
     vnoremap <silent> d d:call ClipboardYank()<cr>
     nnoremap <silent> p :call ClipboardPaste()<cr>p
+
+    " Map esc to leave terminal mode
+    tnoremap <Esc> <C-\><C-n>
 endif
 " Get rid of annoying help window
 nmap <F1> <nop>
@@ -257,6 +261,7 @@ function! RangeChooser()
     endfor
     redraw!
 endfunction
+" Use ranger as my file chooser
 command! -bar RangerChooser call RangeChooser()
 nnoremap <leader>r :<C-U>RangerChooser<CR>
 nnoremap <C-@> :<C-U>RangerChooser<CR>

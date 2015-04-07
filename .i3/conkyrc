@@ -20,12 +20,11 @@ TEXT
 
 ${if_match "${mpd_title}" != "(null)"}
 ${if_match "${execp mpc | awk -F'[][]' '{print $2}' | tr -d '[[:space:]]'}" == "playing"}
-{"full_text":  "${mpd_artist}: ${mpd_title}", "color":"\#ffffff"},
-{ "full_text" : "", "color": "\#ffffff"},
+{"full_text":  "♫ ${mpd_artist}: ${mpd_title}", "color":"\#ffffff"},
+{ "full_text" : "", "color": "\#ffffff", "separator":false},
 ${else}
 ${if_match "${execp mpc | awk -F'[][]' '{print $2}' | tr -d '[[:space:]]'}" == "paused"}
-{ "full_text" : "❚❚", "color": "\#ffffff"},
-
+{ "full_text" : "❚❚", "color": "\#ffffff", "separator":false},
 ${endif}
 ${endif}
 ${endif}

@@ -1,11 +1,19 @@
 #!/bin/bash
 lock() {
-    i3lock -i $1
+    #scrot -e 'convert -blur 0x3 $f ~/.i3/lockbg.png'
+    #convert -gravity center -composite ~/.i3/lock.png ~/.i3/lockfg.png ~/.i3/lockfinal.png
+    i3lock -i ~/.i3/lockfinal.png \
+        --insidecolor=00000000 \
+        --insidevercolor=00000000 \
+        --ringvercolor=FFFF00FF \
+        --ringwrongcolor=FF0000FF \
+        --insidewrongcolor=FF000000 \
+        --textcolor=00000000
 }
 
 case "$1" in
     lock)
-        lock $2
+        lock
         ;;
     logout)
         i3-msg exit

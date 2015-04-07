@@ -9,9 +9,21 @@
 # layout, use the i3-config-wizard
 #
 
-set $background $HOME/Pictures/Wallpapers/Arrows.png
-set $lock $HOME/Pictures/Wallpapers/square.png
+set $background $HOME/.i3/wallpaper.png
+set $lock $HOME/.i3/lock.png
 set $terminal konsole
+
+
+set $WS1 1
+set $WS2 2
+set $WS3 3
+set $WS4 4
+set $WS5 5
+set $WS6 6
+set $WS7 7
+set $WS8 8
+set $WS9 9
+set $WS10 10
 
 
 ###############################################################################
@@ -20,7 +32,7 @@ set $terminal konsole
 exec --no-startup-id nm-applet
 exec --no-startup-id pa-applet
 exec --no-startup-id feh --bg-fill $background
-exec --no-startup-id mopidy
+exec --no-startup-id 'sleep 1m; mopidy'
 exec --no-startup-id i3-msg 'workspace 3; exec konsole -e ncmpcpp'
 # if cursor disappears: gsettings set org.gnome.settings-daemon.plugins.cursor active false
 exec --no-startup-id /usr/lib/gnome-settings-daemon/gnome-settings-daemon
@@ -29,7 +41,7 @@ exec --no-startup-id /usr/lib/gnome-settings-daemon/gnome-settings-daemon
 exec --no-startup-id syndaemon -k -t -d -i 0.5
 
 # Start up an emacs daemon
-exec --no-startup-id emacs --daemon
+# exec --no-startup-id emacs --daemon
 
 # Uncomment to allow transparency
 #exec --no-startup-id xcompmgr -a
@@ -164,33 +176,33 @@ bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -dec 10
 
 
 # switch to workspace
-bindsym Mod1+1 workspace 1
-bindsym Mod1+2 workspace 2
-bindsym Mod1+3 workspace 3
-bindsym Mod1+4 workspace 4
-bindsym Mod1+5 workspace 5
-bindsym Mod1+6 workspace 6
-bindsym Mod1+7 workspace 7
-bindsym Mod1+8 workspace 8
-bindsym Mod1+9 workspace 9
-bindsym Mod1+0 workspace 10
+bindsym Mod1+1 workspace $WS1
+bindsym Mod1+2 workspace $WS2
+bindsym Mod1+3 workspace $WS3
+bindsym Mod1+4 workspace $WS4
+bindsym Mod1+5 workspace $WS5
+bindsym Mod1+6 workspace $WS6
+bindsym Mod1+7 workspace $WS7
+bindsym Mod1+8 workspace $WS8
+bindsym Mod1+9 workspace $WS9
+bindsym Mod1+0 workspace $WS10
 
 # move focused container to workspace
-bindsym Mod1+Shift+1 move container to workspace 1; workspace 1
-bindsym Mod1+Shift+2 move container to workspace 2; workspace 2
-bindsym Mod1+Shift+3 move container to workspace 3; workspace 3
-bindsym Mod1+Shift+4 move container to workspace 4; workspace 4
-bindsym Mod1+Shift+5 move container to workspace 5; workspace 5
-bindsym Mod1+Shift+6 move container to workspace 6; workspace 6
-bindsym Mod1+Shift+7 move container to workspace 7; workspace 7
-bindsym Mod1+Shift+8 move container to workspace 8; workspace 8
-bindsym Mod1+Shift+9 move container to workspace 9; workspace 9
-bindsym Mod1+Shift+0 move container to workspace 10; workspace 10
+bindsym Mod1+Shift+1 move container to workspace $WS1; workspace $WS1
+bindsym Mod1+Shift+2 move container to workspace $WS2; workspace $WS2
+bindsym Mod1+Shift+3 move container to workspace $WS3; workspace $WS3
+bindsym Mod1+Shift+4 move container to workspace $WS4; workspace $WS4
+bindsym Mod1+Shift+5 move container to workspace $WS5; workspace $WS5
+bindsym Mod1+Shift+6 move container to workspace $WS6; workspace $WS6
+bindsym Mod1+Shift+7 move container to workspace $WS7; workspace $WS7
+bindsym Mod1+Shift+8 move container to workspace $WS8; workspace $WS8
+bindsym Mod1+Shift+9 move container to workspace $WS9; workspace $WS9
+bindsym Mod1+Shift+0 move container to workspace $WS10; workspace $WS10
 
 
 # Assign types of windows to workspaces
-assign [class="Chromium|Firefox"] 2
-assign [class="Spotify|Skype"] 3
+assign [class="Chromium|Firefox"] $WS2
+assign [class="Spotify|Skype"] $WS3
 
 
 # Remove space taking title bar
@@ -205,18 +217,17 @@ new_window 1pixel
 # finds out, if available)
 bar {
     status_command $HOME/.i3/conky-i3bar
-#    status_command i3status -c ~/.i3/i3status.conf
-
-
-    position top
-    mode dock
-    workspace_buttons yes
-    colors {
-        separator #888888
-            background #333333
-            statusline #FFFFFF
-            focused_workspace #4E9C00 #4E9C00 #FFFFFF
-            active_workspace #333333 #333333 #FFFFFF
+    #status_command i3status -c ~/.i3/i3status.conf
+        position top
+        mode dock
+        workspace_buttons yes
+        #font pango:Source Code Pro for Powerline 9
+        colors {
+            separator #888888
+                background #333333
+                statusline #FFFFFF
+                focused_workspace #4E9C00 #4E9C00 #FFFFFF
+                active_workspace #333333 #333333 #FFFFFF
             inactive_workspace #333333 #333333 #888888
             urgent_workspace #C20000 #C20000 #FFFFFF
     }
@@ -224,7 +235,7 @@ bar {
 
 set $mode_system System (l) lock, (e) logout, (s) suspend, (h) hibernate, (r) reboot, (Shift+s) shutdown
 mode "$mode_system" {
-    bindsym l exec --no-startup-id i3exit lock $lock, mode "default";
+    bindsym l exec --no-startup-id i3exit lock, mode "default";
     bindsym e exec --no-startup-id i3exit logout, mode "default";
     bindsym s exec --no-startup-id i3exit suspend, mode "default";
     bindsym h exec --no-startup-id i3exit hibernate, mode "default";
@@ -245,7 +256,7 @@ bindsym Mod1+Shift+e mode "$mode_system";
 #######################################################################
 
 # Lock the screen using i3lock
-bindsym Control+l exec --no-startup-id i3exit lock $lock
+bindsym Control+Mod1+l exec --no-startup-id i3exit lock $lock
 
 # Open chromium
 bindsym Mod1+g exec --no-startup-id chromium

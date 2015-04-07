@@ -112,7 +112,6 @@ stty -ixon
 
 export PS1="\u@\h:\w$ "
 
-alias ls="ls --color=auto"
 alias files="nautilus ."
 alias gitcd="cd \"\$(git rev-parse --show-toplevel)\""
 alias ':q'=exit
@@ -135,8 +134,8 @@ export EDITOR=vim
 
 alias emax="emacsclient -t"
 # Start emacs daemon if not started
-if ! ps aux | grep "[e]macs --daemon" > /dev/null
-then
-    emacs --daemon #$1 >/dev/null 2>&1
-fi
+#if ! ps aux | grep "[e]macs --daemon" > /dev/null
+#then
+#    emacs --daemon #$1 >/dev/null 2>&1
+#fi
 
