@@ -35,10 +35,10 @@ exec --no-startup-id feh --bg-fill $background
 exec --no-startup-id 'sleep 1m; mopidy'
 exec --no-startup-id i3-msg 'workspace 3; exec konsole -e ncmpcpp'
 # if cursor disappears: gsettings set org.gnome.settings-daemon.plugins.cursor active false
-exec --no-startup-id /usr/lib/gnome-settings-daemon/gnome-settings-daemon
+#exec --no-startup-id /usr/lib/gnome-settings-daemon/gnome-settings-daemon
 
 # Prevent the annoying touchpad during typing
-exec --no-startup-id syndaemon -k -t -d -i 0.5
+# exec --no-startup-id syndaemon -k -t -d -i 0.5
 
 # Start up an emacs daemon
 # exec --no-startup-id emacs --daemon
@@ -65,7 +65,7 @@ font pango:Droid Sans 11px
 floating_modifier Mod1
 
 # start a terminal
-bindsym Mod1+Return exec --no-startup-id konsole #i3-sensible-terminal
+bindsym Mod1+Return exec --no-startup-id ~/.i3/shell.sh #i3-sensible-terminal
 
 # kill focused window
 bindsym Mod1+q kill
