@@ -20,7 +20,8 @@ Bundle 'scrooloose/nerdcommenter'
 Bundle 'scrooloose/nerdtree'
 Bundle 'vim-scripts/nginx.vim'
 Bundle 'AndrewRadev/splitjoin.vim'
-Bundle 'scrooloose/syntastic'
+" Bundle 'scrooloose/syntastic'
+Bundle 'benekastah/neomake'
 " Requires running npm install
 Bundle 'marijnh/tern_for_vim'
 Bundle 'leafgarland/typescript-vim'
@@ -40,11 +41,13 @@ Bundle 'xolox/vim-session'
 Bundle 'honza/vim-snippets'
 " Requires running install.sh
 Bundle 'Valloric/YouCompleteMe'
+" Bundle 'Shougo/neocomplete.vim'
 Bundle 'ervandew/supertab'
 
 " Color scheme installs
 Bundle 'mopp/mopkai.vim'
-Bundle 'chriskempson/base16-vim'
+" Bundle 'chriskempson/base16-vim'
+Bundle 'xolox/vim-notes'
 
 syntax on
 
@@ -83,14 +86,19 @@ set hidden
 set laststatus=2
 set background=dark
 set completeopt=menu
-set lazyredraw
+"set lazyredraw
 
-let base16colorspace=256
+" let base16colorspace=256
 colorscheme mopkai
 let g:airline_theme = 'powerlineish'
 
+"let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'
 
-let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'
+let g:notes_directories = ['~/Documents/Notes']
+let g:notes_suffix = '.txt'
+let g:notes_unicode_enabled = 1
+
+autocmd! BufWritePost * Neomake
 
 " vim-airline configuration
 let g:airline_right_alt_sep = ''
@@ -119,6 +127,18 @@ let g:airline#extensions#default#section_truncate_width = {
       \ 'b': 90,
       \ 'y': 60,
       \ }
+
+
+" let g:acp_enableAtStartup = 0
+" let g:neocomplete#enable_at_startup = 1
+" let g:neocomplete#enable_smart_case = 1
+" let g:neocomplete#sources#syntax#min_keyword_length = 3
+" let g:neocomplete#lock_buffer_name_pattern = '\*ku\*'
+" inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
+" function! s:my_cr_function()
+"   return neocomplete#close_popup() . "\<CR>"
+" endfunction
+" inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 
 "let g:ycm_add_preview_to_completeopt=0
 
