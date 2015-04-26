@@ -39,9 +39,14 @@ Bundle 'elzr/vim-json'
 Bundle 'xolox/vim-misc'
 Bundle 'xolox/vim-session'
 Bundle 'honza/vim-snippets'
+Bundle 'jplaut/vim-arduino-ino'
 " Requires running install.sh
-Bundle 'Valloric/YouCompleteMe'
-" Bundle 'Shougo/neocomplete.vim'
+
+if has('nvim')
+    Bundle 'Valloric/YouCompleteMe'
+else
+    Bundle 'Shougo/neocomplete.vim'
+endif
 Bundle 'ervandew/supertab'
 
 " Color scheme installs
@@ -63,7 +68,7 @@ set t_Co=256
 set wildmenu
 set hlsearch
 set incsearch
-set clipboard=unnamedplus
+set clipboard+=unnamedplus
 set ignorecase
 set smartcase
 set autoindent
@@ -237,50 +242,78 @@ endfunction
 
 if has('nvim')
     " Fix for clipboard usage
-    function! ClipboardYank()
-        call system('xclip -i -selection clipboard', @@)
-    endfunction
-    function! ClipboardPaste()
-        let @@ = system('xclip -o -selection clipboard')
-    endfunction
+    " function! ClipboardYank()
+    "     call system('xclip -i -selection clipboard', @@)
+    " endfunction
+    " function! ClipboardPaste()
+    "     let @@ = system('xclip -o -selection clipboard')
+    " endfunction
 
-    vnoremap <silent> y y:call ClipboardYank()<cr>
-    vnoremap <silent> d d:call ClipboardYank()<cr>
-    nnoremap <silent> p :call ClipboardPaste()<cr>p
+    " vnoremap <silent> y y:call ClipboardYank()<cr>
+    " vnoremap <silent> d d:call ClipboardYank()<cr>
+    " nnoremap <silent> p :call ClipboardPaste()<cr>p
 
     " Map esc to leave terminal mode
     tnoremap <Esc> <C-\><C-n>
+    " function! RangeChooser()
+    "     let $RANGERTEMP = tempname()
+    "     " execute "vsplit .ranger.tmp"
+    "     let Callback = {}
+    "     function Callback.on_exit(id, code)
+    "         if !filereadable($RANGERTEMP)
+    "             redraw!
+    "             return
+    "         endif
+    "         let names = readfile($RANGERTEMP)
+    "         echom names
+    "         " if empty(names)
+    "         "     redraw!
+    "         "     return
+    "         " endif
+    "         " exec 'edit ' . fnameescape(names[0])
+    "         " for name in names[1:]
+    "         "     exec 'argadd ' . fnameescape(name)
+    "         " endfor
+    "         " redraw!
+    "         exe 'bd!' self.bufid
+    "     endfunction
+
+    "     vs | enew
+    "     let callback = extend(copy(Callback), {'bufid': bufnr('%')})
+    "     call termopen('ranger --choosefiles=' . shellescape($RANGERTEMP), callback) | startinsert
+    " endfunction
+else
+    function! RangeChooser()
+        let temp = tempname()
+        " The option "--choosefiles" was added in ranger 1.5.1. Use the next line
+        " with ranger 1.4.2 through 1.5.0 instead.
+        "exec 'silent !ranger --choosefile=' . shellescape(temp)
+        exec 'silent !ranger --choosefiles=' . shellescape(temp)
+        if !filereadable(temp)
+            redraw!
+            " Nothing to read.
+            return
+        endif
+        let names = readfile(temp)
+        if empty(names)
+            redraw!
+            " Nothing to open.
+            return
+        endif
+        " Edit the first item.
+        exec 'edit ' . fnameescape(names[0])
+        " Add any remaning items to the arg list/buffer list.
+        for name in names[1:]
+            exec 'argadd ' . fnameescape(name)
+        endfor
+        redraw!
+    endfunction
 endif
 " Get rid of annoying help window
 nmap <F1> <nop>
 imap <F1> <nop>
 vmap <F1> <nop>
 
-function! RangeChooser()
-    let temp = tempname()
-    " The option "--choosefiles" was added in ranger 1.5.1. Use the next line
-    " with ranger 1.4.2 through 1.5.0 instead.
-    "exec 'silent !ranger --choosefile=' . shellescape(temp)
-    exec 'silent !ranger --choosefiles=' . shellescape(temp)
-    if !filereadable(temp)
-        redraw!
-        " Nothing to read.
-        return
-    endif
-    let names = readfile(temp)
-    if empty(names)
-        redraw!
-        " Nothing to open.
-        return
-    endif
-    " Edit the first item.
-    exec 'edit ' . fnameescape(names[0])
-    " Add any remaning items to the arg list/buffer list.
-    for name in names[1:]
-        exec 'argadd ' . fnameescape(name)
-    endfor
-    redraw!
-endfunction
 " Use ranger as my file chooser
 command! -bar RangerChooser call RangeChooser()
 nnoremap <leader>r :<C-U>RangerChooser<CR>

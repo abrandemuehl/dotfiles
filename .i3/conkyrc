@@ -38,7 +38,7 @@ ${endif}
 
 # System Monitor values
 { "full_text" : "RAM ${mem}" , "color" :
-    ${if_match ${memperc}<60}"\#00ff00"${else}${if_match ${memperc}>60}"\#ff0000"${else}"\#ffff00"${endif}${endif} 
+    ${if_match ${memperc}<60}"\#00ff00"${else}${if_match ${memperc}>80}"\#ff0000"${else}"\#ffff00"${endif}${endif} 
 },
 { "full_text" : " ${cpu}%" , "color" :
     ${if_match ${cpu}<60}"\#00ff00"${else}${if_match ${cpu}>60}"\#ff0000"${else}"\#ffff00"${endif}${endif} 
