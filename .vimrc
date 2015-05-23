@@ -1,58 +1,58 @@
 set nocompatible
-set rtp+=~/.vim/bundle/Vundle.vim
-set encoding=utf-8
+"set rtp+=~/.vim/bundle/Vundle.vim
 
 " Set up vim plugins
-call vundle#rc('~/.vim/bundle')
-Bundle 'gmarik/Vundle.vim'
-Bundle 'L9'
-Bundle 'bling/vim-airline'
-Bundle 'jiangmiao/auto-pairs'
-Bundle 'lilydjwg/colorizer'
-Bundle 'JazzCore/ctrlp-cmatcher'
-Bundle 'kien/ctrlp.vim'
-Bundle 'vim-scripts/FuzzyFinder'
-Bundle 'digitaltoad/vim-jade'
+call plug#begin('~/.vim/plugged')
+"Plug 'gmarik/Vundle.vim'
+Plug 'L9'
+Plug 'bling/vim-airline'
+Plug 'jiangmiao/auto-pairs'
+Plug 'lilydjwg/colorizer'
+Plug 'JazzCore/ctrlp-cmatcher'
+Plug 'kien/ctrlp.vim'
+Plug 'vim-scripts/FuzzyFinder'
+Plug 'digitaltoad/vim-jade', {'for':'jade'}
 " Jedi not needed because YouCompleteMe includes it by default
-"Bundle 'davidhalter/jedi-vim'
-Bundle 'gregsexton/MatchTag'
-Bundle 'scrooloose/nerdcommenter'
-Bundle 'scrooloose/nerdtree'
-Bundle 'vim-scripts/nginx.vim'
-Bundle 'AndrewRadev/splitjoin.vim'
-" Bundle 'scrooloose/syntastic'
-Bundle 'benekastah/neomake'
+"Plug 'davidhalter/jedi-vim'
+Plug 'gregsexton/MatchTag'
+Plug 'scrooloose/nerdcommenter'
+" Plug 'scrooloose/nerdtree'
+Plug 'vim-scripts/nginx.vim'
+Plug 'AndrewRadev/splitjoin.vim'
+" Plug 'scrooloose/syntastic'
+Plug 'benekastah/neomake'
 " Requires running npm install
-Bundle 'marijnh/tern_for_vim'
-Bundle 'leafgarland/typescript-vim'
-Bundle 'mxw/vim-jsx'
-Bundle 'SirVer/ultisnips'
-Bundle 'kshenoy/vim-signature'
-Bundle 'paranoida/vim-airlineish'
-Bundle 'altercation/vim-colors-solarized'
-Bundle 'terryma/vim-expand-region'
-Bundle 'tmhedberg/matchit'
-Bundle 'tpope/vim-fugitive'
-Bundle 'jelera/vim-javascript-syntax'
-Bundle 'pangloss/vim-javascript'
-Bundle 'elzr/vim-json'
-Bundle 'xolox/vim-misc'
-Bundle 'xolox/vim-session'
-Bundle 'honza/vim-snippets'
-Bundle 'jplaut/vim-arduino-ino'
-" Requires running install.sh
+Plug 'marijnh/tern_for_vim', { 'do': 'npm install' }
+Plug 'leafgarland/typescript-vim', {'for': 'javascript'}
+Plug 'jelera/vim-javascript-syntax', {'for':'javascript'}
+Plug 'pangloss/vim-javascript', {'for':'javascript'}
+Plug 'mxw/vim-jsx', {'for': 'jsx'}
+Plug 'SirVer/ultisnips'
+Plug 'kshenoy/vim-signature'
+Plug 'paranoida/vim-airlineish'
+"Plug 'altercation/vim-colors-solarized'
+Plug 'terryma/vim-expand-region'
+Plug 'tmhedberg/matchit'
+Plug 'tpope/vim-fugitive'
+Plug 'elzr/vim-json', {'for':'json'}
+Plug 'xolox/vim-misc'
+Plug 'xolox/vim-session'
+Plug 'honza/vim-snippets'
+Plug 'jplaut/vim-arduino-ino', {'for':'arduino'}
+Plug 'xolox/vim-notes'
 
-if has('nvim')
-    Bundle 'Valloric/YouCompleteMe'
-else
-    Bundle 'Shougo/neocomplete.vim'
-endif
-Bundle 'ervandew/supertab'
+Plug 'Valloric/YouCompleteMe', { 'do':'./install.sh' }
+"Plug 'Shougo/neocomplete.vim'
+Plug 'ervandew/supertab'
 
 " Color scheme installs
-Bundle 'mopp/mopkai.vim'
-" Bundle 'chriskempson/base16-vim'
-Bundle 'xolox/vim-notes'
+Plug 'mopp/mopkai.vim'
+" Plug 'chriskempson/base16-vim'
+
+
+call plug#end()
+
+
 
 syntax on
 
@@ -64,11 +64,12 @@ autocmd FileType html setlocal shiftwidth=2 tabstop=2
 au BufRead,BufNewFile /etc/nginx/*,/usr/local/nginx/conf/* if &ft == '' | setfiletype nginx | endif
 autocmd FileType jade setlocal shiftwidth=2 tabstop=2
 autocmd FileType lua setlocal shiftwidth=2 tabstop=2
+set encoding=utf-8
 set t_Co=256
 set wildmenu
 set hlsearch
 set incsearch
-set clipboard+=unnamedplus
+set clipboard=unnamed,unnamedplus
 set ignorecase
 set smartcase
 set autoindent
@@ -76,6 +77,7 @@ set ruler
 set confirm
 set backspace=2
 set number
+set scrolloff=5
 
 " Tab settings
 set expandtab
@@ -83,6 +85,7 @@ set smarttab
 set shiftwidth=4
 set tabstop=4
 
+set autoread
 set autochdir
 set cursorline
 set novisualbell
@@ -91,11 +94,13 @@ set hidden
 set laststatus=2
 set background=dark
 set completeopt=menu
-"set lazyredraw
+set lazyredraw
 
 " let base16colorspace=256
 colorscheme mopkai
 let g:airline_theme = 'powerlineish'
+
+
 
 "let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'
 
@@ -197,6 +202,7 @@ nnoremap <Up> gk
 vnoremap <Down> gj
 vnoremap <Up> gk
 nnoremap Y y$
+nnoremap <leader>cc :call NERDComment(0, 'toggle')<CR>
 
 if bufwinnr(1)
     map + <C-W>>
