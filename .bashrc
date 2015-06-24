@@ -123,18 +123,10 @@ export WORKON_HOME=~/.virtualenvs
 export TERM=xterm-256color
 
 
-source ~/.bashrc.local
 export TERMINAL=konsole
 export EDITOR=vim
 
 
-=() {
-    calc="$@"
-    # Uncomment the below for (p → +) and (x → *)
-    #calc="${calc//p/+}"
-    #calc="${calc//x/*}"
-    echo -ne "$calc\n quit" | gcalccmd | sed 's:^> ::g'
-}
 
 #export EDITOR=emacsclient
 #export ALTERNATIVE_EDITOR=""
