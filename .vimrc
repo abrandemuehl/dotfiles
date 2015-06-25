@@ -1,20 +1,17 @@
 set nocompatible
-"set rtp+=~/.vim/bundle/Vundle.vim
 
 " Set up vim plugins
 call plug#begin('~/.vim/plugged')
-"Plug 'gmarik/Vundle.vim'
 Plug 'L9'
 Plug 'bling/vim-airline'
 Plug 'jiangmiao/auto-pairs'
+Plug 'tpope/vim-surround'
 Plug 'lilydjwg/colorizer'
-Plug 'JazzCore/ctrlp-cmatcher'
 Plug 'kien/ctrlp.vim'
 Plug 'vim-scripts/FuzzyFinder'
 Plug 'digitaltoad/vim-jade', {'for':'jade'}
-" Jedi not needed because YouCompleteMe includes it by default
-"Plug 'davidhalter/jedi-vim'
 Plug 'gregsexton/MatchTag'
+Plug 'rking/ag.vim'
 Plug 'scrooloose/nerdcommenter'
 " Plug 'scrooloose/nerdtree'
 Plug 'vim-scripts/nginx.vim'
@@ -40,16 +37,14 @@ Plug 'xolox/vim-session'
 Plug 'honza/vim-snippets'
 Plug 'jplaut/vim-arduino-ino', {'for':'arduino'}
 Plug 'xolox/vim-notes'
-
 Plug 'Valloric/YouCompleteMe', { 'do':'./install.sh' }
 "Plug 'Shougo/neocomplete.vim'
 Plug 'ervandew/supertab'
+" Plug 'terryma/vim-multiple-cursors'
 
 " Color scheme installs
 Plug 'mopp/mopkai.vim'
 " Plug 'chriskempson/base16-vim'
-
-
 call plug#end()
 
 
@@ -67,6 +62,7 @@ autocmd FileType lua setlocal shiftwidth=2 tabstop=2
 set encoding=utf-8
 set t_Co=256
 set wildmenu
+set wildignorecase
 set hlsearch
 set incsearch
 set clipboard=unnamed,unnamedplus
@@ -98,10 +94,13 @@ set lazyredraw
 
 " let base16colorspace=256
 colorscheme mopkai
+hi Comment ctermfg=245
 let g:airline_theme = 'powerlineish'
 
 
-
+let g:EclimSignLevel = 'error'
+let g:EclimLoggingDisabled = 1
+let g:EclimCompletionMethod = 'omnifunc'
 "let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'
 
 let g:notes_directories = ['~/Documents/Notes']
@@ -152,13 +151,25 @@ let g:airline#extensions#default#section_truncate_width = {
 
 "let g:ycm_add_preview_to_completeopt=0
 
+
+let mapleader = ","
+
+let g:ctrlp_map = '<Leader>o'
+let g:ctrlp_use_caching=0
+let g:ctrlp_working_path_mode = 'ra'
+let g:ctrlp_by_filename = 1
+let g:ctrlp_max_files=0
+let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
+set wildignore+=*/tmp/*,*.so,*.sw*,*.zip,.git/*,*.class
+nnoremap <Leader>o :CtrlP<cr>
+" let g:ctrlp_match_func = {'match' : 'matcher#cmatch' }
+
 let g:SuperTabDefaultCompletionType = '<C-n>'
 
 let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<tab>"
 let g:UltiSnipsJumpBackwardTrigger="<shift-tab>"
 
-let g:ctrlp_match_func = {'match' : 'matcher#cmatch' }
 
 " Sessions config
 let g:session_autosave = 'no'
@@ -181,10 +192,10 @@ nnoremap J <C-w>j
 nnoremap K <C-w>k
 nnoremap H <C-w>h
 nnoremap L <C-w>l
-nnoremap <C-H> :call MarkWindowSwap()<CR> <C-w>h :call DoWindowSwap()<CR>
-nnoremap <C-J> :call MarkWindowSwap()<CR> <C-w>j :call DoWindowSwap()<CR>
-nnoremap <C-K> :call MarkWindowSwap()<CR> <C-w>k :call DoWindowSwap()<CR>
-nnoremap <C-L> :call MarkWindowSwap()<CR> <C-w>l :call DoWindowSwap()<CR>
+nnoremap <c-h> :call MarkWindowSwap()<CR> <C-w>h :call DoWindowSwap()<CR>
+nnoremap <c-j> :call MarkWindowSwap()<CR> <C-w>j :call DoWindowSwap()<CR>
+nnoremap <c-k> :call MarkWindowSwap()<CR> <C-w>k :call DoWindowSwap()<CR>
+nnoremap <c-l> :call MarkWindowSwap()<CR> <C-w>l :call DoWindowSwap()<CR>
 nmap <Space> i_<Esc>r
 map <Tab> :bnext<CR>
 map <S-Tab> :bprevious<CR>
