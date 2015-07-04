@@ -13,14 +13,10 @@ Plug 'JazzCore/ctrlp-cmatcher'
 Plug 'kien/ctrlp.vim'
 Plug 'vim-scripts/FuzzyFinder'
 Plug 'digitaltoad/vim-jade', {'for':'jade'}
-" Jedi not needed because YouCompleteMe includes it by default
-"Plug 'davidhalter/jedi-vim'
 Plug 'gregsexton/MatchTag'
 Plug 'scrooloose/nerdcommenter'
-" Plug 'scrooloose/nerdtree'
 Plug 'vim-scripts/nginx.vim'
 Plug 'AndrewRadev/splitjoin.vim'
-" Plug 'scrooloose/syntastic'
 Plug 'benekastah/neomake'
 " Requires running npm install
 Plug 'marijnh/tern_for_vim', { 'do': 'npm install' }
@@ -31,7 +27,6 @@ Plug 'mxw/vim-jsx', {'for': 'jsx'}
 Plug 'SirVer/ultisnips'
 Plug 'kshenoy/vim-signature'
 Plug 'paranoida/vim-airlineish'
-"Plug 'altercation/vim-colors-solarized'
 Plug 'terryma/vim-expand-region'
 Plug 'tmhedberg/matchit'
 Plug 'tpope/vim-fugitive'
