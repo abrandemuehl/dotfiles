@@ -1,9 +1,10 @@
 set nocompatible
-"set rtp+=~/.vim/bundle/Vundle.vim
 
 " Set up vim plugins
 call plug#begin('~/.vim/plugged')
 "Plug 'gmarik/Vundle.vim'
+Plug 'othree/html5.vim'
+Plug 'lybrown/vim-pasm'
 Plug 'L9'
 Plug 'bling/vim-airline'
 Plug 'jiangmiao/auto-pairs'
@@ -39,7 +40,6 @@ Plug 'xolox/vim-misc'
 Plug 'xolox/vim-session'
 Plug 'honza/vim-snippets'
 Plug 'jplaut/vim-arduino-ino', {'for':'arduino'}
-Plug 'xolox/vim-notes'
 
 Plug 'Valloric/YouCompleteMe', { 'do':'./install.sh' }
 "Plug 'Shougo/neocomplete.vim'
@@ -170,6 +170,12 @@ let mapleader = ","
 "inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 " use jk to esc in insert mode
 inoremap jk <esc>
+inoremap <Home> <esc>
+inoremap <End> <esc>
+nnoremap <Home> <esc>
+nnoremap <End> <esc>
+vnoremap <Home> <esc>
+vnoremap <End> <esc>
 nnoremap ; :
 let g:ctrlp_map = '<c-p>'
 "nnoremap <C-@> :NerdTreeToggle<CR>
@@ -248,46 +254,19 @@ endfunction
 
 if has('nvim')
     " Fix for clipboard usage
-    " function! ClipboardYank()
-    "     call system('xclip -i -selection clipboard', @@)
-    " endfunction
-    " function! ClipboardPaste()
-    "     let @@ = system('xclip -o -selection clipboard')
-    " endfunction
+    "function! ClipboardYank()
+    "    call system('xclip -i -selection clipboard', @@)
+    "endfunction
+    "function! ClipboardPaste()
+    "    let @@ = system('xclip -o -selection clipboard')
+    "endfunction
 
-    " vnoremap <silent> y y:call ClipboardYank()<cr>
-    " vnoremap <silent> d d:call ClipboardYank()<cr>
-    " nnoremap <silent> p :call ClipboardPaste()<cr>p
+    "vnoremap <silent> y y:call ClipboardYank()<cr>
+    "vnoremap <silent> d d:call ClipboardYank()<cr>
+    "nnoremap <silent> p :call ClipboardPaste()<cr>p
 
     " Map esc to leave terminal mode
     tnoremap <Esc> <C-\><C-n>
-    " function! RangeChooser()
-    "     let $RANGERTEMP = tempname()
-    "     " execute "vsplit .ranger.tmp"
-    "     let Callback = {}
-    "     function Callback.on_exit(id, code)
-    "         if !filereadable($RANGERTEMP)
-    "             redraw!
-    "             return
-    "         endif
-    "         let names = readfile($RANGERTEMP)
-    "         echom names
-    "         " if empty(names)
-    "         "     redraw!
-    "         "     return
-    "         " endif
-    "         " exec 'edit ' . fnameescape(names[0])
-    "         " for name in names[1:]
-    "         "     exec 'argadd ' . fnameescape(name)
-    "         " endfor
-    "         " redraw!
-    "         exe 'bd!' self.bufid
-    "     endfunction
-
-    "     vs | enew
-    "     let callback = extend(copy(Callback), {'bufid': bufnr('%')})
-    "     call termopen('ranger --choosefiles=' . shellescape($RANGERTEMP), callback) | startinsert
-    " endfunction
 else
     function! RangeChooser()
         let temp = tempname()

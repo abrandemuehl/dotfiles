@@ -1,5 +1,5 @@
 [global_config]
-  enabled_plugins = LaunchpadCodeURLHandler, APTURLHandler, LaunchpadBugURLHandler
+  enabled_plugins = ,
 [keybindings]
   next_tab = <Primary>Tab
   close_window = None
@@ -18,7 +18,7 @@
   full_screen = <Ctrl><Shift>F11
   prev_tab = <Primary><Shift>Tab
   switch_to_tab_4 = None
-  split_vert = <Ctrl>I
+  split_vert = <Primary>o
   ungroup_all = <Super>g
   close_term = <Ctrl>W
   go_left = <Primary><Shift>h
@@ -26,19 +26,21 @@
   go_up = <Primary><Shift>k
   resize_up = <Primary><Shift>Up
   rotate_cw = None
-  split_horiz = <Ctrl>O
+  split_horiz = <Primary>i
   go_down = <Primary><Shift>j
   new_window = <Ctrl>N
   reset_clear = None
 [profiles]
   [[default]]
-    palette = "#000000:#cd0000:#00cd00:#cdcd00:#1e90ff:#cd00cd:#00cdcd:#e5e5e5:#4c4c4c:#ff0000:#00ff00:#ffff00:#4682b4:#ff00ff:#00ffff:#ffffff"
+    scrollbar_position = hidden
+    palette = "#000000:#cd0000:#00cd00:#cdcd00:#0000cd:#cd00cd:#00cdcd:#faebd7:#404040:#ff0000:#00ff00:#ffff00:#0000ff:#ff00ff:#00ffff:#ffffff"
     background_image = None
     scrollback_lines = 1000
     use_system_font = False
     foreground_color = "#ffffff"
-    font = Monospace 11
-    background_color = "#300a24"
+    show_titlebar = False
+    font = Fira Mono for Powerline 10
+    background_color = "#333333"
     scrollback_infinite = True
 [layouts]
   [[default]]

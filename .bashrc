@@ -112,9 +112,7 @@ stty -ixon
 
 export PS1="\u@\h:\w$ "
 
-alias files="nautilus ."
 alias gitcd="cd \"\$(git rev-parse --show-toplevel)\""
-alias ':q'=exit
 
 export ews="brandem2@remlnx.ews.illinois.edu"
 export WORKON_HOME=~/.virtualenvs
@@ -123,18 +121,7 @@ export WORKON_HOME=~/.virtualenvs
 export TERM=xterm-256color
 
 
-export TERMINAL=konsole
 export EDITOR=vim
+alias sudo="sudo -E"
 
-
-
-#export EDITOR=emacsclient
-#export ALTERNATIVE_EDITOR=""
-
-alias emax="emacsclient -t"
-# Start emacs daemon if not started
-#if ! ps aux | grep "[e]macs --daemon" > /dev/null
-#then
-#    emacs --daemon #$1 >/dev/null 2>&1
-#fi
-
+source ~/.bash_profile
