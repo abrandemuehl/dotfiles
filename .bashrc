@@ -120,7 +120,6 @@ export WORKON_HOME=~/.virtualenvs
 
 
 export TERM=xterm-256color
-<<<<<<< HEAD
 
 
 export EDITOR=vim
