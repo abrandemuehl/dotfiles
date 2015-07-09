@@ -5,6 +5,7 @@ call plug#begin('~/.vim/plugged')
 "Plug 'gmarik/Vundle.vim'
 Plug 'othree/html5.vim'
 Plug 'lybrown/vim-pasm'
+Plug 'chrisbra/improvedft'
 Plug 'L9'
 Plug 'bling/vim-airline'
 Plug 'jiangmiao/auto-pairs'
@@ -150,6 +151,9 @@ let g:airline#extensions#default#section_truncate_width = {
 
 "let g:ycm_add_preview_to_completeopt=0
 
+
+let g:ft_improved_nomap_comma = 1
+let g:ft_improved_nomap_semicolon = 1
 
 let mapleader = ","
 
