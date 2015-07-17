@@ -115,8 +115,6 @@ export PS1="\u@\h:\w$ "
 
 alias gitcd="cd \"\$(git rev-parse --show-toplevel)\""
 
-export ews="brandem2@remlnx.ews.illinois.edu"
-export WORKON_HOME=~/.virtualenvs
 
 
 export TERM=xterm-256color
@@ -124,5 +122,3 @@ export TERM=xterm-256color
 
 export EDITOR=vim
 alias sudo="sudo -E"
-
-source ~/.bash_profile

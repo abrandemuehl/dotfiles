@@ -5,7 +5,6 @@ call plug#begin('~/.vim/plugged')
 "Plug 'gmarik/Vundle.vim'
 Plug 'othree/html5.vim'
 Plug 'lybrown/vim-pasm'
-Plug 'chrisbra/improvedft'
 Plug 'L9'
 Plug 'bling/vim-airline'
 Plug 'jiangmiao/auto-pairs'
@@ -182,8 +181,6 @@ map <C-d> :OpenSession<CR>
 
 let mapleader = ","
 "inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
-" use jk to esc in insert mode
-inoremap jk <esc>
 inoremap <Home> <esc>
 inoremap <End> <esc>
 nnoremap <Home> <esc>
