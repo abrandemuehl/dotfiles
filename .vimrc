@@ -151,6 +151,9 @@ let g:airline#extensions#default#section_truncate_width = {
 "let g:ycm_add_preview_to_completeopt=0
 
 
+let g:NERDSpaceDelims = 1
+
+
 let g:ft_improved_nomap_comma = 1
 let g:ft_improved_nomap_semicolon = 1
 
@@ -219,7 +222,6 @@ nnoremap <Up> gk
 vnoremap <Down> gj
 vnoremap <Up> gk
 nnoremap Y y$
-nnoremap <leader>cc :call NERDComment(0, 'toggle')<CR>
 
 if bufwinnr(1)
     map + <C-W>>
