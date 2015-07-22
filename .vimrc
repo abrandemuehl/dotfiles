@@ -2,48 +2,25 @@ set nocompatible
 
 " Set up vim plugins
 call plug#begin('~/.vim/plugged')
-"Plug 'gmarik/Vundle.vim'
-Plug 'othree/html5.vim'
-Plug 'lybrown/vim-pasm'
 Plug 'L9'
 Plug 'bling/vim-airline'
 Plug 'jiangmiao/auto-pairs'
 Plug 'tpope/vim-surround'
 Plug 'lilydjwg/colorizer'
 Plug 'kien/ctrlp.vim'
-Plug 'vim-scripts/FuzzyFinder'
-Plug 'digitaltoad/vim-jade', {'for':'jade'}
 Plug 'gregsexton/MatchTag'
 Plug 'rking/ag.vim'
 Plug 'scrooloose/nerdcommenter'
-Plug 'vim-scripts/nginx.vim'
 Plug 'AndrewRadev/splitjoin.vim'
-Plug 'benekastah/neomake'
-" Requires running npm install
 Plug 'marijnh/tern_for_vim', { 'do': 'npm install' }
-Plug 'leafgarland/typescript-vim', {'for': 'javascript'}
-Plug 'jelera/vim-javascript-syntax', {'for':'javascript'}
-Plug 'pangloss/vim-javascript', {'for':'javascript'}
-Plug 'mxw/vim-jsx', {'for': 'jsx'}
-Plug 'SirVer/ultisnips'
 Plug 'kshenoy/vim-signature'
-Plug 'paranoida/vim-airlineish'
-Plug 'terryma/vim-expand-region'
 Plug 'tmhedberg/matchit'
-Plug 'tpope/vim-fugitive'
 Plug 'elzr/vim-json', {'for':'json'}
 Plug 'xolox/vim-misc'
 Plug 'xolox/vim-session'
-Plug 'honza/vim-snippets'
-Plug 'jplaut/vim-arduino-ino', {'for':'arduino'}
 Plug 'Valloric/YouCompleteMe', { 'do':'./install.sh' }
-"Plug 'Shougo/neocomplete.vim'
 Plug 'ervandew/supertab'
-" Plug 'terryma/vim-multiple-cursors'
-
-" Color scheme installs
 Plug 'mopp/mopkai.vim'
-" Plug 'chriskempson/base16-vim'
 call plug#end()
 
 
