@@ -3,14 +3,14 @@ set nocompatible
 " Set up vim plugins
 call plug#begin('~/.vim/plugged')
 Plug 'L9'
-Plug 'bling/vim-airline'
+" Plug 'bling/vim-airline'
 Plug 'jiangmiao/auto-pairs'
-Plug 'tpope/vim-surround'
 Plug 'lilydjwg/colorizer'
 Plug 'kien/ctrlp.vim'
 Plug 'gregsexton/MatchTag'
 Plug 'rking/ag.vim'
-Plug 'scrooloose/nerdcommenter'
+" Plug 'scrooloose/nerdcommenter'
+
 Plug 'AndrewRadev/splitjoin.vim'
 Plug 'marijnh/tern_for_vim', { 'do': 'npm install' }
 Plug 'kshenoy/vim-signature'
@@ -21,6 +21,17 @@ Plug 'xolox/vim-session'
 Plug 'Valloric/YouCompleteMe', { 'do':'./install.sh' }
 Plug 'ervandew/supertab'
 Plug 'mopp/mopkai.vim'
+
+
+" Nerdtree stuff
+Plug 'scrooloose/nerdtree'
+Plug 'Xuyuanp/nerdtree-git-plugin'
+
+" Special plugins that extend the vim language
+Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-commentary'
+Plug 'vim-scripts/InsertChar'
 call plug#end()
 
 
@@ -31,8 +42,6 @@ filetype on
 filetype plugin indent on
 au BufRead,BufNewFile *.ts setlocal filetype=typescript
 autocmd FileType html setlocal shiftwidth=2 tabstop=2
-"au FileType javascript call JavaScriptFold()
-au BufRead,BufNewFile /etc/nginx/*,/usr/local/nginx/conf/* if &ft == '' | setfiletype nginx | endif
 autocmd FileType jade setlocal shiftwidth=2 tabstop=2
 autocmd FileType lua setlocal shiftwidth=2 tabstop=2
 set encoding=utf-8
@@ -66,75 +75,32 @@ set hidden
 set laststatus=2
 set background=dark
 set completeopt=menu
-set lazyredraw
+" set lazyredraw
 
-" let base16colorspace=256
 colorscheme mopkai
-hi Comment ctermfg=245
 let g:airline_theme = 'powerlineish'
-
 
 let g:EclimSignLevel = 'error'
 let g:EclimLoggingDisabled = 1
 let g:EclimCompletionMethod = 'omnifunc'
-"let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'
 
-let g:notes_directories = ['~/Documents/Notes']
-let g:notes_suffix = '.txt'
-let g:notes_unicode_enabled = 1
 
-autocmd! BufWritePost * Neomake
 
 " vim-airline configuration
-let g:airline_right_alt_sep = ''
-let g:airline_right_sep = ''
-let g:airline_left_alt_sep= ''
-let g:airline_left_sep = ''
-let g:airline#extensions#tabline#enabled = 1
-let g:airline_powerline_fonts = 1
-"let g:airline#extensions#tabline#left_sep = ' '
-"let g:airline#extensions#tabline#left_alt_sep = '|'
-"let g:airline#extensions#tabline#fnamemod = ':t'
-"let g:airline_left_sep=' '
-"let g:airline_right_sep=' '
-"let g:airline_theme = 'airlineish'
-"let g:airline_exclude_preview=1
-"let g:airline_section_b = '%{strftime("%m/%d %X (%Z)")}'
-"let g:airline_section_gutter = '%<%F'
-"let g:airline_section_c = '%F'
-"let g:airline_section_y = '%l,%c %P'
-"let g:airline_section_z = '%{FileSize()}'
-""let g:airline_section_gutter = ''
-"let g:airline_section_warning = ''
-let g:airline#extensions#tabline#formatter = 'unique_tail'
-let g:airline_detect_modified=1
-let g:airline#extensions#default#section_truncate_width = {
-      \ 'b': 90,
-      \ 'y': 60,
-      \ }
-
-
-" let g:acp_enableAtStartup = 0
-" let g:neocomplete#enable_at_startup = 1
-" let g:neocomplete#enable_smart_case = 1
-" let g:neocomplete#sources#syntax#min_keyword_length = 3
-" let g:neocomplete#lock_buffer_name_pattern = '\*ku\*'
-" inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
-" function! s:my_cr_function()
-"   return neocomplete#close_popup() . "\<CR>"
-" endfunction
-" inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
-
-"let g:ycm_add_preview_to_completeopt=0
+" let g:airline#extensions#tabline#enabled = 1
+" let g:airline_powerline_fonts = 1
+" let g:airline#extensions#tabline#formatter = 'unique_tail'
+" let g:airline_detect_modified=1
+" let g:airline#extensions#default#section_truncate_width = {
+      " \ 'b': 90,
+      " \ 'y': 60,
+      " \ }
 
 
 let g:NERDSpaceDelims = 1
 
 
-let g:ft_improved_nomap_comma = 1
-let g:ft_improved_nomap_semicolon = 1
-
-let mapleader = ","
+let mapleader = " "
 
 let g:ctrlp_map = '<Leader>o'
 let g:ctrlp_use_caching=0
@@ -144,13 +110,12 @@ let g:ctrlp_max_files=0
 let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
 set wildignore+=*/tmp/*,*.so,*.sw*,*.zip,.git/*,*.class
 nnoremap <Leader>o :CtrlP<cr>
-" let g:ctrlp_match_func = {'match' : 'matcher#cmatch' }
 
 let g:SuperTabDefaultCompletionType = '<C-n>'
 
-let g:UltiSnipsExpandTrigger="<tab>"
-let g:UltiSnipsJumpForwardTrigger="<tab>"
-let g:UltiSnipsJumpBackwardTrigger="<shift-tab>"
+
+map <leader>n :NERDTreeToggle<CR>
+let g:NERDTreeShowHidden=1
 
 
 " Sessions config
@@ -159,66 +124,66 @@ let g:session_autoload = 'yes'
 map <C-s> :SaveSession!<CR>
 map <C-d> :OpenSession<CR>
 
-let mapleader = ","
-"inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 inoremap <Home> <esc>
 inoremap <End> <esc>
 nnoremap <Home> <esc>
 nnoremap <End> <esc>
 vnoremap <Home> <esc>
 vnoremap <End> <esc>
-nnoremap ; :
-let g:ctrlp_map = '<c-p>'
-"nnoremap <C-@> :NerdTreeToggle<CR>
-highlight Comment ctermfg=blue
-vmap v <Plug>(expand_region_expand)
-vmap <C-v> <Plug>(expand_region_shrink)
+" nnoremap ; :
 nnoremap <silent> <leader><esc> :noh<return><esc>
-nnoremap J <C-w>j
-nnoremap K <C-w>k
-nnoremap H <C-w>h
-nnoremap L <C-w>l
+" nnoremap J <C-w>j
+" nnoremap K <C-w>k
+" nnoremap H <C-w>h
+" nnoremap L <C-w>l
+map <leader>h <C-w>h
+map <leader>j <C-w>j
+map <leader>k <C-w>k
+map <leader>l <C-w>l
 nnoremap <c-h> :call MarkWindowSwap()<CR> <C-w>h :call DoWindowSwap()<CR>
 nnoremap <c-j> :call MarkWindowSwap()<CR> <C-w>j :call DoWindowSwap()<CR>
 nnoremap <c-k> :call MarkWindowSwap()<CR> <C-w>k :call DoWindowSwap()<CR>
 nnoremap <c-l> :call MarkWindowSwap()<CR> <C-w>l :call DoWindowSwap()<CR>
-nmap <Space> i_<Esc>r
-map <Tab> :bnext<CR>
-map <S-Tab> :bprevious<CR>
-map <leader>t :enew<CR>
+" nmap <Space> i_<Esc>r
+nnoremap <leader>i :<C-U>call InsertChar#insert(v:count1)<CR>
+nnoremap <leader>a l:<C-U>call InsertChar#insert(v:count1)<CR>
+" map <Tab> :bnext<CR>
+" map <S-Tab> :bprevious<CR>
+" map <leader>t :enew<CR>
 nmap <leader>q :bp <BAR> bd #<CR>
 nmap <leader>bl :ls<CR>
-command! Q q
-command! W w
-command! Wq wq
-command! WQ wq
-map <leader>w :bd<CR>
-map Q <Nop>
+nmap <leader>bn :bnext<CR>
+nmap <leader>bp :bprevious<CR>
+nmap <leader>; :
 nnoremap <Down> gj
 nnoremap <Up> gk
 vnoremap <Down> gj
 vnoremap <Up> gk
 nnoremap Y y$
+nnoremap j gj
+nnoremap k gk
+vnoremap j gj
+vnoremap k gk
 
 if bufwinnr(1)
     map + <C-W>>
-    map _ <C-W><
+    " map _ <C-W><
 endif
-function! TabFormatter(bufnr, buffers)
-    return fnamemodify(bufname(a:bufnr), ':t')
-endfunction
+" function! TabFormatter(bufnr, buffers)
+    " return fnamemodify(bufname(a:bufnr), ':t')
+" endfunction
 
-function! FileSize()
-    let bytes = getfsize(expand("%:p"))
-    if bytes <= 0
-        return ""
-    endif
-    if bytes < 1024
-        return bytes . "b"
-    else
-        return (bytes / 1024) . "kb"
-    endif
-endfunction
+" function! FileSize()
+    " let bytes = getfsize(expand("%:p"))
+    " if bytes <= 0
+        " return ""
+    " endif
+    " if bytes < 1024
+        " return bytes . "b"
+    " else
+        " return (bytes / 1024) . "kb"
+    " endif
+" endfunction
 
 function! MarkWindowSwap()
     " marked window number
