@@ -13,14 +13,21 @@ Plug 'rking/ag.vim'
 
 Plug 'AndrewRadev/splitjoin.vim'
 Plug 'marijnh/tern_for_vim', { 'do': 'npm install' }
-Plug 'kshenoy/vim-signature'
 Plug 'tmhedberg/matchit'
 Plug 'elzr/vim-json', {'for':'json'}
 Plug 'xolox/vim-misc'
 Plug 'xolox/vim-session'
+Plug 'mopp/mopkai.vim'
+
+
+" Autocompletion stuff
 Plug 'Valloric/YouCompleteMe', { 'do':'./install.sh' }
 Plug 'ervandew/supertab'
-Plug 'mopp/mopkai.vim'
+
+
+" Show marks next to line numbers
+" Plug 'kshenoy/vim-signature'
+
 
 
 " Nerdtree stuff
@@ -78,14 +85,15 @@ set completeopt=menu
 " set lazyredraw
 
 colorscheme mopkai
-let g:airline_theme = 'powerlineish'
 
 let g:EclimSignLevel = 'error'
 let g:EclimLoggingDisabled = 1
 let g:EclimCompletionMethod = 'omnifunc'
 
 
+let g:ag_working_path_mode="r"
 
+" let g:airline_theme = 'powerlineish'
 " vim-airline configuration
 " let g:airline#extensions#tabline#enabled = 1
 " let g:airline_powerline_fonts = 1
@@ -140,6 +148,8 @@ map <leader>h <C-w>h
 map <leader>j <C-w>j
 map <leader>k <C-w>k
 map <leader>l <C-w>l
+map <leader>vs :vs<CR>
+map <leader>sp :vs<CR>
 nnoremap <c-h> :call MarkWindowSwap()<CR> <C-w>h :call DoWindowSwap()<CR>
 nnoremap <c-j> :call MarkWindowSwap()<CR> <C-w>j :call DoWindowSwap()<CR>
 nnoremap <c-k> :call MarkWindowSwap()<CR> <C-w>k :call DoWindowSwap()<CR>
