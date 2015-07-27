@@ -3,7 +3,7 @@ set nocompatible
 " Set up vim plugins
 call plug#begin('~/.vim/plugged')
 Plug 'L9'
-" Plug 'bling/vim-airline'
+Plug 'bling/vim-airline'
 Plug 'jiangmiao/auto-pairs'
 Plug 'lilydjwg/colorizer'
 Plug 'kien/ctrlp.vim'
@@ -39,6 +39,7 @@ Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
 Plug 'vim-scripts/InsertChar'
+Plug 'vim-scripts/argtextobj.vim'
 call plug#end()
 
 
@@ -93,16 +94,16 @@ let g:EclimCompletionMethod = 'omnifunc'
 
 let g:ag_working_path_mode="r"
 
-" let g:airline_theme = 'powerlineish'
 " vim-airline configuration
+let g:airline_theme = 'powerlineish'
 " let g:airline#extensions#tabline#enabled = 1
-" let g:airline_powerline_fonts = 1
+let g:airline_powerline_fonts = 1
 " let g:airline#extensions#tabline#formatter = 'unique_tail'
-" let g:airline_detect_modified=1
+let g:airline_detect_modified=1
 " let g:airline#extensions#default#section_truncate_width = {
-      " \ 'b': 90,
-      " \ 'y': 60,
-      " \ }
+"       \ 'b': 90,
+"       \ 'y': 60,
+"       \ }
 
 
 let g:NERDSpaceDelims = 1
