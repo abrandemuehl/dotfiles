@@ -272,3 +272,21 @@ vmap <F1> <nop>
 command! -bar RangerChooser call RangeChooser()
 nnoremap <leader>r :<C-U>RangerChooser<CR>
 nnoremap <C-@> :<C-U>RangerChooser<CR>
+
+
+"-----------------------------------------------------------------------------"
+"                        Useful Vim Commands                                  "
+"                                                                             "
+" ''        jump back to before latest jump                                   "
+"                                                                             "
+"                                                                             "
+"-----------------------------------------------------------------------------"
+
+
+
+
+
+
+
+
+
