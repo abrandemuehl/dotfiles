@@ -46,6 +46,9 @@ call plug#end()
 
 syntax on
 
+
+autocmd BufWritePre * :%s/\s*$//g|''
+
 filetype on
 filetype plugin indent on
 au BufRead,BufNewFile *.ts setlocal filetype=typescript
@@ -161,7 +164,7 @@ nnoremap <leader>a l:<C-U>call InsertChar#insert(v:count1)<CR>
 " map <Tab> :bnext<CR>
 " map <S-Tab> :bprevious<CR>
 " map <leader>t :enew<CR>
-nmap <leader>q :bp <BAR> bd #<CR>
+nmap <leader>q :q<CR>
 nmap <leader>bl :ls<CR>
 nmap <leader>bn :bnext<CR>
 nmap <leader>bp :bprevious<CR>
