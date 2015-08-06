@@ -47,7 +47,6 @@ call plug#end()
 syntax on
 
 
-autocmd BufWritePre * :%s/\s*$//g|''
 
 filetype on
 filetype plugin indent on
@@ -135,7 +134,7 @@ let g:session_autosave = 'no'
 let g:session_autoload = 'yes'
 map <C-s> :SaveSession!<CR>
 map <C-d> :OpenSession<CR>
-
+map <S-k> <Nop>
 inoremap <Home> <esc>
 inoremap <End> <esc>
 nnoremap <Home> <esc>
