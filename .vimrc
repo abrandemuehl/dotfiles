@@ -18,7 +18,11 @@ Plug 'elzr/vim-json', {'for':'json'}
 Plug 'xolox/vim-misc'
 Plug 'xolox/vim-session'
 Plug 'mopp/mopkai.vim'
+Plug 'unblevable/quick-scope'
 
+" Plug 'zhaocai/GoldenView.Vim'
+Plug 'Konfekt/FastFold'
+" Plug 'mattboehm/vim-accordion'
 
 " Autocompletion stuff
 Plug 'Valloric/YouCompleteMe', { 'do':'./install.sh' }
@@ -128,12 +132,25 @@ let g:SuperTabDefaultCompletionType = '<C-n>'
 map <leader>n :NERDTreeToggle<CR>
 let g:NERDTreeShowHidden=1
 
+" autocmd VimEnter * Accordion 2
+
+" map <leader>f :Accordion 1<CR>
+
+
+
 
 " Sessions config
 let g:session_autosave = 'no'
 let g:session_autoload = 'yes'
 map <C-s> :SaveSession!<CR>
 map <C-d> :OpenSession<CR>
+
+map <leader>vs :vs<CR>
+map <leader>sp :sp<CR>
+" nmap <silent> <Leader>vs <Plug>GoldenViewSplit
+
+nmap <silent> <Leader>r :so ~/.vimrc<CR>
+
 map <S-k> <Nop>
 inoremap <Home> <esc>
 inoremap <End> <esc>
@@ -143,16 +160,10 @@ vnoremap <Home> <esc>
 vnoremap <End> <esc>
 " nnoremap ; :
 nnoremap <silent> <leader><esc> :noh<return><esc>
-" nnoremap J <C-w>j
-" nnoremap K <C-w>k
-" nnoremap H <C-w>h
-" nnoremap L <C-w>l
 map <leader>h <C-w>h
 map <leader>j <C-w>j
 map <leader>k <C-w>k
 map <leader>l <C-w>l
-map <leader>vs :vs<CR>
-map <leader>sp :sp<CR>
 nnoremap <c-h> :call MarkWindowSwap()<CR> <C-w>h :call DoWindowSwap()<CR>
 nnoremap <c-j> :call MarkWindowSwap()<CR> <C-w>j :call DoWindowSwap()<CR>
 nnoremap <c-k> :call MarkWindowSwap()<CR> <C-w>k :call DoWindowSwap()<CR>
@@ -178,25 +189,6 @@ nnoremap k gk
 vnoremap j gj
 vnoremap k gk
 
-if bufwinnr(1)
-    map + <C-W>>
-    " map _ <C-W><
-endif
-" function! TabFormatter(bufnr, buffers)
-    " return fnamemodify(bufname(a:bufnr), ':t')
-" endfunction
-
-" function! FileSize()
-    " let bytes = getfsize(expand("%:p"))
-    " if bytes <= 0
-        " return ""
-    " endif
-    " if bytes < 1024
-        " return bytes . "b"
-    " else
-        " return (bytes / 1024) . "kb"
-    " endif
-" endfunction
 
 function! MarkWindowSwap()
     " marked window number
@@ -261,31 +253,49 @@ else
         endfor
         redraw!
     endfunction
+
+    " Use ranger as my file chooser
+    command! -bar RangerChooser call RangeChooser()
+    nnoremap <leader>r :<C-U>RangerChooser<CR>
+    nnoremap <C-@> :<C-U>RangerChooser<CR>
+
 endif
 " Get rid of annoying help window
 nmap <F1> <nop>
 imap <F1> <nop>
 vmap <F1> <nop>
 
-" Use ranger as my file chooser
-command! -bar RangerChooser call RangeChooser()
-nnoremap <leader>r :<C-U>RangerChooser<CR>
-nnoremap <C-@> :<C-U>RangerChooser<CR>
+let g:qs_enable = 0
+let g:qs_enable_char_list = [ 'f', 'F', 't', 'T' ]
+
+function! Quick_scope_selective(movement)
+    let needs_disabling = 0
+    if !g:qs_enable
+        QuickScopeToggle
+        redraw
+        let needs_disabling = 1
+    endif
+    let letter = nr2char(getchar())
+    if needs_disabling
+        QuickScopeToggle
+    endif
+    return a:movement . letter
+endfunction
+
+" quick_scope maps, operator-pending mode included (can do 'df' with hint)
+for i in g:qs_enable_char_list
+	execute 'noremap <expr> <silent>' . i . " Quick_scope_selective('". i . "')"
+endfor
+
 
 
 "-----------------------------------------------------------------------------"
 "                        Useful Vim Commands                                  "
 "                                                                             "
-" ''        jump back to before latest jump                                   "
+" ``        jump back to before latest jump                                   "
 "                                                                             "
 "                                                                             "
 "-----------------------------------------------------------------------------"
-
-
-
-
-
-
 
 
 
