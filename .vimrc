@@ -9,7 +9,6 @@ Plug 'lilydjwg/colorizer'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'gregsexton/MatchTag'
 Plug 'rking/ag.vim'
-" Plug 'scrooloose/nerdcommenter'
 
 Plug 'AndrewRadev/splitjoin.vim'
 Plug 'marijnh/tern_for_vim', { 'do': 'npm install' }
@@ -49,7 +48,6 @@ call plug#end()
 
 
 syntax on
-
 
 
 filetype on
@@ -122,7 +120,7 @@ let g:ctrlp_use_caching=0
 let g:ctrlp_working_path_mode = 'ra'
 let g:ctrlp_by_filename = 1
 let g:ctrlp_max_files=0
-let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
+let g:ctrlp_user_command = ['.git/', 'cd %s && git ls-files']
 set wildignore+=*/tmp/*,*.so,*.sw*,*.zip,.git/*,*.class
 nnoremap <Leader>o :CtrlP<cr>
 
@@ -143,7 +141,6 @@ let g:NERDTreeShowHidden=1
 let g:session_autosave = 'no'
 let g:session_autoload = 'yes'
 map <C-s> :SaveSession!<CR>
-map <C-d> :OpenSession<CR>
 
 map <leader>vs :vs<CR>
 map <leader>sp :sp<CR>
