@@ -9,7 +9,7 @@
   rotate_ccw = None
   move_tab_left = None
   go_right = <Primary><Shift>l
-  new_tab = <Ctrl>T
+  new_tab = <Primary>t
   resize_right = <Primary><Shift>Right
   group_all = None
   toggle_zoom = <Primary>g
@@ -39,7 +39,7 @@
     use_system_font = False
     foreground_color = "#ffffff"
     show_titlebar = False
-    font = Fira Mono for Powerline 10
+    font = Ubuntu Mono derivative Powerline 10
     background_color = "#333333"
     scrollback_infinite = True
 [layouts]

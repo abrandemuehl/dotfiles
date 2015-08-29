@@ -85,7 +85,7 @@ fi
 alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
-alias ls='ls -G'
+alias ls='ls --color=auto'
 
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
@@ -120,5 +120,5 @@ alias gitcd="cd \"\$(git rev-parse --show-toplevel)\""
 export TERM=xterm-256color
 
 
-export EDITOR=vim
+export EDITOR=nvim
 alias sudo="sudo -E"
