@@ -9,28 +9,38 @@ Plug 'lilydjwg/colorizer'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'gregsexton/MatchTag'
 Plug 'rking/ag.vim'
+Plug 'benekastah/neomake'
+Plug 'osyo-manga/vim-over'
 
 Plug 'AndrewRadev/splitjoin.vim'
-Plug 'marijnh/tern_for_vim', { 'do': 'npm install' }
+" Plug 'marijnh/tern_for_vim', { 'do': 'npm install' }
 Plug 'tmhedberg/matchit'
 Plug 'elzr/vim-json', {'for':'json'}
 Plug 'xolox/vim-misc'
 Plug 'xolox/vim-session'
 Plug 'mopp/mopkai.vim'
 Plug 'unblevable/quick-scope'
+Plug 'tpope/vim-endwise'
 
 " Plug 'zhaocai/GoldenView.Vim'
 Plug 'Konfekt/FastFold'
 " Plug 'mattboehm/vim-accordion'
-
 " Autocompletion stuff
 Plug 'Valloric/YouCompleteMe', { 'do':'./install.sh' }
+" Plug 'davidhalter/jedi-vim'
+" Plug 'shougo/neocomplete.vim'
 Plug 'ervandew/supertab'
 
 
 " Show marks next to line numbers
 " Plug 'kshenoy/vim-signature'
 
+" Closure plugins
+Plug 'guns/vim-clojure-static'
+" Plug 'vim-scripts/paredit.vim'
+Plug 'tpope/vim-fireplace'
+Plug 'kien/rainbow_parentheses.vim'
+" Plug 'luochen1990/rainbow'
 
 
 " Nerdtree stuff
@@ -44,18 +54,18 @@ Plug 'tpope/vim-commentary'
 Plug 'vim-scripts/InsertChar'
 Plug 'vim-scripts/argtextobj.vim'
 call plug#end()
-
-
-
 syntax on
-
-
-filetype on
 filetype plugin indent on
 au BufRead,BufNewFile *.ts setlocal filetype=typescript
+au VimEnter * RainbowParenthesesToggle
+au Syntax * RainbowParenthesesLoadRound
+au Syntax * RainbowParenthesesLoadSquare
+au Syntax * RainbowParenthesesLoadBraces
+au Syntax * RainbowParenthesesLoadChevrons
 autocmd FileType html setlocal shiftwidth=2 tabstop=2
 autocmd FileType jade setlocal shiftwidth=2 tabstop=2
 autocmd FileType lua setlocal shiftwidth=2 tabstop=2
+autocmd! BufWritePost * Neomake
 set encoding=utf-8
 set t_Co=256
 set wildmenu
@@ -91,10 +101,13 @@ set completeopt=menu
 
 colorscheme mopkai
 
+
 let g:EclimSignLevel = 'error'
 let g:EclimLoggingDisabled = 1
 let g:EclimCompletionMethod = 'omnifunc'
-
+" autocmd FileType python setlocal omnifunc=jedi#completions
+" let g:jedi#completions_enabled = 0
+" let g:jedi#auto_vim_configuration = 0
 
 let g:ag_working_path_mode="r"
 
@@ -185,6 +198,13 @@ nnoremap j gj
 nnoremap k gk
 vnoremap j gj
 vnoremap k gk
+
+
+" Set up some neomake stuff
+" let g:neomake_cpp_clang_maker = {
+"     \ 'args':['-std=c++11 -c'],
+"     \ }
+" let g:neomake_cpp_enabled_makers = ['clang']
 
 
 function! MarkWindowSwap()
@@ -290,9 +310,8 @@ endfor
 "                        Useful Vim Commands                                  "
 "                                                                             "
 " ``        jump back to before latest jump                                   "
-"                                                                             "
+" <C-o>     Execute one command and return to insert mode                     "
 "                                                                             "
 "-----------------------------------------------------------------------------"
-
 
 

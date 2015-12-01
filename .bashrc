@@ -111,6 +111,8 @@ fi
 # Allow usage of Ctrl-s in vim
 stty -ixon
 
+# For clear coloring
+# export PS1="\[\e[0;0m\]\u@\h:\[\e[0;32m\]\w$ \[\e[0;36m\]"
 export PS1="\u@\h:\w$ "
 
 alias gitcd="cd \"\$(git rev-parse --show-toplevel)\""
@@ -119,6 +121,13 @@ alias gitcd="cd \"\$(git rev-parse --show-toplevel)\""
 
 export TERM=xterm-256color
 
-
 export EDITOR=nvim
 alias sudo="sudo -E"
+
+source /usr/bin/virtualenvwrapper.sh
+
+# Set the proper terminal info for nvim
+infocmp $TERM | sed 's/kbs=^[hH]/kbs=\\177/' > $TERM.ti
+tic $TERM.ti
+
+
