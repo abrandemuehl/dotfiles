@@ -127,7 +127,7 @@ alias sudo="sudo -E"
 source /usr/bin/virtualenvwrapper.sh
 
 # Set the proper terminal info for nvim
-infocmp $TERM | sed 's/kbs=^[hH]/kbs=\\177/' > $TERM.ti
-tic $TERM.ti
+infocmp $TERM | sed 's/kbs=^[hH]/kbs=\\177/' > ~/.$TERM.ti
+tic ~/.$TERM.ti
 
-
+alias open="xdg-open"

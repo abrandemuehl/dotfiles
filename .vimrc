@@ -12,35 +12,47 @@ Plug 'rking/ag.vim'
 Plug 'benekastah/neomake'
 Plug 'osyo-manga/vim-over'
 
+Plug 'Yggdroot/indentLine'
+Plug 'Valloric/MatchTagAlways'
+
 Plug 'AndrewRadev/splitjoin.vim'
 " Plug 'marijnh/tern_for_vim', { 'do': 'npm install' }
-Plug 'tmhedberg/matchit'
+" Plug 'tmhedberg/matchit'
 Plug 'elzr/vim-json', {'for':'json'}
 Plug 'xolox/vim-misc'
 Plug 'xolox/vim-session'
 Plug 'mopp/mopkai.vim'
+Plug 'mkarmona/colorsbox'
 Plug 'unblevable/quick-scope'
 Plug 'tpope/vim-endwise'
+Plug 'vim-scripts/Align'
 
 " Plug 'zhaocai/GoldenView.Vim'
 Plug 'Konfekt/FastFold'
 " Plug 'mattboehm/vim-accordion'
+
 " Autocompletion stuff
 Plug 'Valloric/YouCompleteMe', { 'do':'./install.sh' }
 " Plug 'davidhalter/jedi-vim'
 " Plug 'shougo/neocomplete.vim'
 Plug 'ervandew/supertab'
 
-
 " Show marks next to line numbers
 " Plug 'kshenoy/vim-signature'
 
-" Closure plugins
-Plug 'guns/vim-clojure-static'
+" Clojure plugins
 " Plug 'vim-scripts/paredit.vim'
 Plug 'tpope/vim-fireplace'
 Plug 'kien/rainbow_parentheses.vim'
 " Plug 'luochen1990/rainbow'
+
+" Syntax
+Plug 'digitaltoad/vim-jade'
+Plug 'mitsuhiko/vim-jinja'
+Plug 'Shirk/vim-gas'
+Plug 'othree/html5.vim'
+Plug 'guns/vim-clojure-static'
+Plug 'elixir-lang/vim-elixir'
 
 
 " Nerdtree stuff
@@ -54,6 +66,8 @@ Plug 'tpope/vim-commentary'
 Plug 'vim-scripts/InsertChar'
 Plug 'vim-scripts/argtextobj.vim'
 call plug#end()
+
+
 syntax on
 filetype plugin indent on
 au BufRead,BufNewFile *.ts setlocal filetype=typescript
@@ -61,11 +75,16 @@ au VimEnter * RainbowParenthesesToggle
 au Syntax * RainbowParenthesesLoadRound
 au Syntax * RainbowParenthesesLoadSquare
 au Syntax * RainbowParenthesesLoadBraces
-au Syntax * RainbowParenthesesLoadChevrons
+au FileType html RainbowParenthesesLoadChevrons
 autocmd FileType html setlocal shiftwidth=2 tabstop=2
 autocmd FileType jade setlocal shiftwidth=2 tabstop=2
 autocmd FileType lua setlocal shiftwidth=2 tabstop=2
 autocmd! BufWritePost * Neomake
+
+nnoremap <leader>% :MtaJumpToOtherTag<cr>
+
+
+
 set encoding=utf-8
 set t_Co=256
 set wildmenu
@@ -99,7 +118,8 @@ set background=dark
 set completeopt=menu
 " set lazyredraw
 
-colorscheme mopkai
+" colorscheme mopkai
+colorscheme colorsbox-stnight
 
 
 let g:EclimSignLevel = 'error'
@@ -206,6 +226,7 @@ vnoremap k gk
 "     \ }
 " let g:neomake_cpp_enabled_makers = ['clang']
 
+let g:neomake_cpp_enabled_makers = ['gcc']
 
 function! MarkWindowSwap()
     " marked window number
