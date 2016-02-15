@@ -1,60 +1,69 @@
-(defgroup dotemacs nil
-  "Custom configuration for dotemacs."
-  :group 'local)
+
+(require 'package)
+(package-initialize)
+(add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/") t)
+(add-to-list 'package-archives '("gnu" . "http://elpa.gnu.org/packages/") t)
+(add-to-list 'package-archives '("org" . "http://orgmode.org/elpa/") t)
+(add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/") t)
+(package-refresh-contents)
 
 
-
-(add-to-list 'load-path (concat user-emacs-directory "~/.emacs.d/config"))
-
-(defconst user-init-dir
-  (cond ((boundp 'user-emacs-directory)
-         user-emacs-directory)
-        ((boundp 'user-init-directory)
-         user-init-directory)
-        (t "~/.emacs.d/config")))
+(defun require-package (package)
+  (setq-default highlight-tabs t)
+  "Install given package"
+  (unless (package-installed-p package)
+    (unless (assoc package package-archive-contents)
+      (package-refresh-contents))
+    (package-install package)))
 
 
-(defun load-user-file (file)
-  (interactive "f")
-  "Load a file in current user's configuration directory"
-  (load-file (expand-file-name file user-init-dir)))
+(defvar clojure-packages
+  '())
 
-(require 'cl)
-(load-user-file "/config/init-core.el")
-(require 'init-packages)
-(let ((debug-on-error t))
-  (require 'init-evil)
-)
-(load "~/.emacs.d/packages.el")
+(defvar evil-packages
+  '(evil evil-matchit evil-surround evil-numbers evil-leader evil-mark-replace 
+    evil-args evil-quickscope evil-god-state evil-visualstar 
+    evil-nerd-commenter evil-textobj-column evil-tabs 
+    evil-search-highlight-persist))
+
+(defvar emacs-packages
+  '(rainbow-delimiters flycheck windmove projectile grizzl))
+
+(defvar completion-packages
+  '(ycmd company company-go company-shell company-tern company-ycmd company-jedi 
+    company-ghc company-arduino company-web))
+
+; (require-package 'evil-surround)
+(mapcar 'require-package clojure-packages)
+
+(mapcar 'require-package emacs-packages)
+(add-hook 'after-init-hook #'global-ycmd-mode)
+(setq projectile-indexing-method 'alien)
+(setq projectile-completion-system 'grizzl)
+
+(mapcar 'require-package completion-packages)
+(add-hook 'after-init-hook 'global-company-mode)
+
+(mapcar 'require-package evil-packages)
+; Turn evil stuff on
+(evil-mode 1)
+(global-evil-leader-mode)
+(global-evil-surround-mode 1)
+(global-evil-quickscope-mode 1)
+(global-evil-visualstar-mode)
+
+; Use space as god mode
+; (evil-define-key 'normal global-map " " 'evil-execute-in-god-state)
+; (evil-define-key 'god global-map [escape] 'evil-god-state-bail)
 
 
+; evil-leader bindings
+(evil-leader/set-leader "<SPC>")
+(evil-leader/set-key "o" 'projectile-find-file)
+(evil-leader/set-key "h" 'windmove-left)
+(evil-leader/set-key "j" 'windmove-down)
+(evil-leader/set-key "k" 'windmove-up)
+(evil-leader/set-key "l" 'windmove-right)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(custom-safe-themes
-   (quote
-    ("f0b0710b7e1260ead8f7808b3ee13c3bb38d45564e369cbe15fc6d312f0cd7a0" "3c83b3676d796422704082049fc38b6966bcad960f896669dfc21a7a37a748fa" default))))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
+; evil-nerd-commenter use default keybindings
+(evilnc-default-hotkeys)
