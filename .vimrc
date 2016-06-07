@@ -25,8 +25,8 @@ Plug 'tpope/vim-endwise'
 Plug 'Valloric/YouCompleteMe', { 'do':'./install.sh' }
 Plug 'ervandew/supertab'
 
-" Show marks next to line numbers
-
+" Go stuff
+Plug 'fatih/vim-go'
 
 Plug 'kien/rainbow_parentheses.vim'
 
@@ -56,7 +56,6 @@ autocmd! BufWritePost * Neomake
 set encoding=utf-8
 set t_Co=256
 set wildmenu
-set wildignorecase
 set hlsearch
 set incsearch
 set clipboard=unnamed,unnamedplus
