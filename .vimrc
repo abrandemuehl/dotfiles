@@ -4,6 +4,7 @@ set nocompatible
 call plug#begin('~/.vim/plugged')
 Plug 'L9'
 Plug 'bling/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 Plug 'jiangmiao/auto-pairs'
 Plug 'lilydjwg/colorizer'
 Plug 'ctrlpvim/ctrlp.vim'
@@ -21,7 +22,8 @@ Plug 'unblevable/quick-scope'
 Plug 'tpope/vim-endwise'
 
 " Autocompletion stuff
-Plug 'Valloric/YouCompleteMe', { 'do':'./install.sh' }
+Plug 'shougo/neocomplete'
+Plug 'AutoComplPop'
 Plug 'ervandew/supertab'
 
 " Go stuff
@@ -123,6 +125,9 @@ nnoremap <Leader>o :CtrlP<cr>
 
 let g:SuperTabDefaultCompletionType = '<C-n>'
 
+let g:acp_enableAtStartup = 0
+let g:neocomplete#enable_smart_case = 1
+let g:neocomplete#sources#syntax#min_keyword_length = 1
 
 map <leader>n :NERDTreeToggle<CR>
 let g:NERDTreeShowHidden=1
@@ -287,8 +292,6 @@ endfunction
 for i in g:qs_enable_char_list
 	execute 'noremap <expr> <silent>' . i . " Quick_scope_selective('". i . "')"
 endfor
-
-
 
 "-----------------------------------------------------------------------------"
 "                        Useful Vim Commands                                  "
