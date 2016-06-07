@@ -48,4 +48,7 @@ export TERM=xterm-256color
 
 alias sudo="sudo -E"
 
+export HOMEBREW_NO_ANALYTICS=1
 
+export GOPATH="$HOME/Code/go"
+export PATH="$PATH:$GOPATH/bin/"

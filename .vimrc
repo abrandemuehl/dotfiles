@@ -9,7 +9,6 @@ Plug 'lilydjwg/colorizer'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'gregsexton/MatchTag'
 Plug 'rking/ag.vim'
-Plug 'benekastah/neomake'
 Plug 'osyo-manga/vim-over'
 
 " Plug 'marijnh/tern_for_vim', { 'do': 'npm install' }
@@ -17,7 +16,7 @@ Plug 'tmhedberg/matchit'
 Plug 'elzr/vim-json', {'for':'json'}
 Plug 'xolox/vim-misc'
 Plug 'xolox/vim-session'
-Plug 'mopp/mopkai.vim'
+Plug 'mkarmona/colorsbox'
 Plug 'unblevable/quick-scope'
 Plug 'tpope/vim-endwise'
 
@@ -52,7 +51,6 @@ au Syntax * RainbowParenthesesLoadChevrons
 autocmd FileType html setlocal shiftwidth=2 tabstop=2
 autocmd FileType jade setlocal shiftwidth=2 tabstop=2
 autocmd FileType lua setlocal shiftwidth=2 tabstop=2
-autocmd! BufWritePost * Neomake
 set encoding=utf-8
 set t_Co=256
 set wildmenu
@@ -85,7 +83,7 @@ set background=dark
 set completeopt=menu
 " set lazyredraw
 
-colorscheme mopkai
+colorscheme colorsbox-stnight
 
 
 let g:EclimSignLevel = 'error'
