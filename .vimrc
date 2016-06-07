@@ -12,7 +12,6 @@ Plug 'rking/ag.vim'
 Plug 'benekastah/neomake'
 Plug 'osyo-manga/vim-over'
 
-Plug 'AndrewRadev/splitjoin.vim'
 " Plug 'marijnh/tern_for_vim', { 'do': 'npm install' }
 Plug 'tmhedberg/matchit'
 Plug 'elzr/vim-json', {'for':'json'}
@@ -22,26 +21,14 @@ Plug 'mopp/mopkai.vim'
 Plug 'unblevable/quick-scope'
 Plug 'tpope/vim-endwise'
 
-" Plug 'zhaocai/GoldenView.Vim'
-Plug 'Konfekt/FastFold'
-" Plug 'mattboehm/vim-accordion'
 " Autocompletion stuff
 Plug 'Valloric/YouCompleteMe', { 'do':'./install.sh' }
-" Plug 'davidhalter/jedi-vim'
-" Plug 'shougo/neocomplete.vim'
 Plug 'ervandew/supertab'
 
-
 " Show marks next to line numbers
-" Plug 'kshenoy/vim-signature'
 
-" Closure plugins
-Plug 'guns/vim-clojure-static'
-" Plug 'vim-scripts/paredit.vim'
-Plug 'tpope/vim-fireplace'
+
 Plug 'kien/rainbow_parentheses.vim'
-" Plug 'luochen1990/rainbow'
-
 
 " Nerdtree stuff
 Plug 'scrooloose/nerdtree'
@@ -313,5 +300,3 @@ endfor
 " <C-o>     Execute one command and return to insert mode                     "
 "                                                                             "
 "-----------------------------------------------------------------------------"
-
-
