@@ -23,8 +23,7 @@ Plug 'tpope/vim-endwise'
 
 " Autocompletion stuff
 Plug 'shougo/neocomplete'
-Plug 'AutoComplPop'
-Plug 'ervandew/supertab'
+Plug 'supertab'
 
 " Go stuff
 Plug 'fatih/vim-go'
@@ -124,8 +123,7 @@ set wildignore+=*/tmp/*,*.so,*.sw*,*.zip,.git/*,*.class
 nnoremap <Leader>o :CtrlP<cr>
 
 let g:SuperTabDefaultCompletionType = '<C-n>'
-
-let g:acp_enableAtStartup = 0
+let g:neocomplete#enable_at_startup = 1
 let g:neocomplete#enable_smart_case = 1
 let g:neocomplete#sources#syntax#min_keyword_length = 1
 
@@ -273,6 +271,7 @@ vmap <F1> <nop>
 
 let g:qs_enable = 0
 let g:qs_enable_char_list = [ 'f', 'F', 't', 'T' ]
+
 
 function! Quick_scope_selective(movement)
     let needs_disabling = 0
