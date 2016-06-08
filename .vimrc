@@ -82,7 +82,7 @@ set hidden
 set laststatus=2
 set background=dark
 set completeopt=menu
-" set lazyredraw
+set lazyredraw
 
 colorscheme colorsbox-stnight
 
