@@ -1,5 +1,7 @@
 set nocompatible
-
+function! DoRemote(arg)
+  UpdateRemotePlugins
+endfunction
 " Set up vim plugins
 call plug#begin('~/.vim/plugged')
 Plug 'L9'
@@ -8,14 +10,14 @@ Plug 'jiangmiao/auto-pairs'
 Plug 'lilydjwg/colorizer'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'gregsexton/MatchTag'
-Plug 'rking/ag.vim'
+" Plug 'rking/ag.vim'
 Plug 'benekastah/neomake'
 Plug 'osyo-manga/vim-over'
 
 Plug 'Yggdroot/indentLine'
 Plug 'Valloric/MatchTagAlways'
 
-Plug 'AndrewRadev/splitjoin.vim'
+" Plug 'AndrewRadev/splitjoin.vim'
 " Plug 'marijnh/tern_for_vim', { 'do': 'npm install' }
 " Plug 'tmhedberg/matchit'
 Plug 'elzr/vim-json', {'for':'json'}
@@ -27,24 +29,28 @@ Plug 'unblevable/quick-scope'
 Plug 'tpope/vim-endwise'
 Plug 'vim-scripts/Align'
 
-" Plug 'zhaocai/GoldenView.Vim'
-Plug 'Konfekt/FastFold'
-" Plug 'mattboehm/vim-accordion'
-
 " Autocompletion stuff
-Plug 'Valloric/YouCompleteMe', { 'do':'./install.sh' }
-" Plug 'davidhalter/jedi-vim'
-" Plug 'shougo/neocomplete.vim'
+Plug 'Shougo/deoplete.nvim', { 'do': function('DoRemote') }
 Plug 'ervandew/supertab'
+
+
+" Go
+Plug 'nsf/gocode'
+Plug 'fatih/vim-go'
+Plug 'zchee/deoplete-go'
+
+
 
 " Show marks next to line numbers
 " Plug 'kshenoy/vim-signature'
 
 " Clojure plugins
 " Plug 'vim-scripts/paredit.vim'
-Plug 'tpope/vim-fireplace'
-Plug 'kien/rainbow_parentheses.vim'
+" Plug 'tpope/vim-fireplace'
 " Plug 'luochen1990/rainbow'
+
+
+Plug 'alvan/vim-closetag'
 
 " Syntax
 Plug 'digitaltoad/vim-jade'
@@ -54,6 +60,7 @@ Plug 'othree/html5.vim'
 Plug 'guns/vim-clojure-static'
 Plug 'elixir-lang/vim-elixir'
 
+Plug 'kien/rainbow_parentheses.vim'
 
 " Nerdtree stuff
 Plug 'scrooloose/nerdtree'
@@ -71,6 +78,7 @@ call plug#end()
 syntax on
 filetype plugin indent on
 au BufRead,BufNewFile *.ts setlocal filetype=typescript
+au BufRead,BufNewFile *.S setlocal filetype=gas
 au VimEnter * RainbowParenthesesToggle
 au Syntax * RainbowParenthesesLoadRound
 au Syntax * RainbowParenthesesLoadSquare
@@ -78,9 +86,10 @@ au Syntax * RainbowParenthesesLoadBraces
 au FileType html RainbowParenthesesLoadChevrons
 autocmd FileType html setlocal shiftwidth=2 tabstop=2
 autocmd FileType jade setlocal shiftwidth=2 tabstop=2
+autocmd FileType ruby setlocal shiftwidth=2 tabstop=2
+autocmd FileType eruby setlocal shiftwidth=2 tabstop=2
 autocmd FileType lua setlocal shiftwidth=2 tabstop=2
 autocmd! BufWritePost * Neomake
-
 nnoremap <leader>% :MtaJumpToOtherTag<cr>
 
 
@@ -100,6 +109,7 @@ set confirm
 set backspace=2
 set number
 set scrolloff=5
+set mouse-=a
 
 " Tab settings
 set expandtab
@@ -121,6 +131,7 @@ set completeopt=menu
 " colorscheme mopkai
 colorscheme colorsbox-stnight
 
+let g:deoplete#enable_at_startup = 1
 
 let g:EclimSignLevel = 'error'
 let g:EclimLoggingDisabled = 1
@@ -132,7 +143,6 @@ let g:EclimCompletionMethod = 'omnifunc'
 let g:ag_working_path_mode="r"
 
 " vim-airline configuration
-let g:airline_theme = 'powerlineish'
 " let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts = 1
 " let g:airline#extensions#tabline#formatter = 'unique_tail'
@@ -142,6 +152,8 @@ let g:airline_detect_modified=1
 "       \ 'y': 60,
 "       \ }
 
+
+let g:closetag_filenames = "*.html,*.xhtml,*.phtml,*.html.*"
 
 let g:NERDSpaceDelims = 1
 
@@ -171,10 +183,6 @@ let g:NERDTreeShowHidden=1
 
 
 " Sessions config
-let g:session_autosave = 'no'
-let g:session_autoload = 'yes'
-map <C-s> :SaveSession!<CR>
-
 map <leader>vs :vs<CR>
 map <leader>sp :sp<CR>
 " nmap <silent> <Leader>vs <Plug>GoldenViewSplit
@@ -219,14 +227,6 @@ nnoremap k gk
 vnoremap j gj
 vnoremap k gk
 
-
-" Set up some neomake stuff
-" let g:neomake_cpp_clang_maker = {
-"     \ 'args':['-std=c++11 -c'],
-"     \ }
-" let g:neomake_cpp_enabled_makers = ['clang']
-
-let g:neomake_cpp_enabled_makers = ['gcc']
 
 function! MarkWindowSwap()
     " marked window number

@@ -82,10 +82,10 @@ if [ -x /usr/bin/dircolors ]; then
 fi
 
 # some more ls aliases
-alias ll='ls -alF'
-alias la='ls -A'
-alias l='ls -CF'
-alias ls='ls --color=auto'
+alias ll='ls -alFN'
+alias la='ls -AN'
+alias l='ls -CFN'
+alias ls='ls -N --color=auto'
 
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
@@ -107,6 +107,15 @@ if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
     . /etc/bash_completion
 fi
 
+# Prevent file overwrite on stdout redirection
+# Use `>|` to force redirection to an existing file
+set -o noclobber
+
+# Update window size after every command
+shopt -s checkwinsize
+
+# Perform file completion in a case insensitive fashion
+bind "set completion-ignore-case on"
 
 # Allow usage of Ctrl-s in vim
 stty -ixon
@@ -119,15 +128,25 @@ alias gitcd="cd \"\$(git rev-parse --show-toplevel)\""
 
 
 
+alias emax="emacsclient -nw"
 export TERM=xterm-256color
 
-export EDITOR=nvim
+export EDITOR=emax
+export CSCOPE_EDITOR=nvim
 alias sudo="sudo -E"
 
 source /usr/bin/virtualenvwrapper.sh
 
 # Set the proper terminal info for nvim
-infocmp $TERM | sed 's/kbs=^[hH]/kbs=\\177/' > ~/.$TERM.ti
-tic ~/.$TERM.ti
+# infocmp $TERM | sed 's/kbs=^[hH]/kbs=\\177/' > ~/.$TERM.ti
+# tic ~/.$TERM.ti
 
 alias open="xdg-open"
+alias e="$EDITOR"
+
+export PATH=$PATH:"/home/adrian/.gem/ruby/2.3.0/bin"
+export CDPATH=".:~:~/Projects/:~/School/"
+
+export GOPATH="/home/adrian/Projects/go"
+
+export PATH=$PATH:"/home/adrian/Projects/go/bin"
