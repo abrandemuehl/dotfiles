@@ -48,9 +48,9 @@ export TERM=xterm-256color
 
 alias sudo="sudo -E"
 
-export HOMEBREW_NO_ANALYTICS=1
-
-export GOPATH="$HOME/Code/go"
-export PATH="/usr/local/bin:/usr/local/sbin:$PATH:$GOPATH/bin/"
-
 export EDITOR="vim"
+
+
+source $HOME/.bashrc.local
+
+set -o vi

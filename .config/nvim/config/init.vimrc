@@ -1,7 +1,8 @@
-set nocompatible
-
 " Set up vim plugins
-call plug#begin('~/.vim/plugged')
+function! DoRemote(arg)
+  UpdateRemotePlugins
+endfunction
+call plug#begin('~/.config/nvim/plugged')
 Plug 'L9'
 " Plug 'bling/vim-airline'
 " Plug 'vim-airline/vim-airline-themes'
@@ -21,11 +22,17 @@ Plug 'unblevable/quick-scope'
 Plug 'tpope/vim-endwise'
 
 " Autocompletion stuff
-Plug 'shougo/neocomplete'
+Plug 'Shougo/deoplete.nvim', { 'do': function('DoRemote') }
 Plug 'ervandew/supertab'
 
 " Go stuff
 Plug 'fatih/vim-go'
+Plug 'zchee/deoplete-go', { 'do': 'make'}
+Plug 'nsf/gocode', { 'rtp': 'nvim', 'do': '~/.config/nvim/plugged/gocode/nvim/symlink.sh' }
+
+
+Plug 'neomake/neomake'
+
 
 Plug 'kien/rainbow_parentheses.vim'
 
