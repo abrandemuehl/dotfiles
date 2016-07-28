@@ -23,6 +23,9 @@ Plug 'tpope/vim-endwise'
 
 " Autocompletion stuff
 Plug 'Shougo/deoplete.nvim', { 'do': function('DoRemote') }
+Plug 'zchee/deoplete-jedi'
+Plug 'zchee/deoplete-clang'
+Plug 'Shougo/neoinclude.vim'
 Plug 'ervandew/supertab'
 
 " Go stuff
@@ -35,6 +38,9 @@ Plug 'neomake/neomake'
 
 
 Plug 'kien/rainbow_parentheses.vim'
+
+" Git
+Plug 'tpope/vim-fugitive'
 
 " Nerdtree stuff
 Plug 'scrooloose/nerdtree'

@@ -41,6 +41,11 @@ autocmd! BufWritePost * Neomake
 let g:deoplete#enable_at_startup = 1
 let g:deoplete#auto_complete_start_length = 1
 "end deoplete=================================================================="
+"
+"deoplete-clang================================================================"
+let g:deoplete#sources#clang#libclang_path = "/usr/local/Cellar/llvm/3.6.2/lib/libclang.dylib"
+let g:deoplete#sources#clang#clang_header = "/usr/local/Cellar/llvm/3.6.2/lib/clang/3.6.2/include/"
+"end deoplete-clang============================================================"
 
 "neocomplete==================================================================="
 let g:neocomplete#enable_at_startup = 1
