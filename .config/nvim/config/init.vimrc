@@ -16,7 +16,7 @@ Plug 'osyo-manga/vim-over'
 Plug 'tmhedberg/matchit'
 Plug 'elzr/vim-json', {'for':'json'}
 Plug 'xolox/vim-misc'
-Plug 'xolox/vim-session'
+" Plug 'xolox/vim-session'
 Plug 'mkarmona/colorsbox'
 Plug 'unblevable/quick-scope'
 Plug 'tpope/vim-endwise'
@@ -25,7 +25,6 @@ Plug 'tpope/vim-endwise'
 Plug 'Shougo/deoplete.nvim', { 'do': function('DoRemote') }
 Plug 'zchee/deoplete-jedi'
 Plug 'zchee/deoplete-clang'
-Plug 'Shougo/neoinclude.vim'
 Plug 'ervandew/supertab'
 
 " Go stuff
@@ -34,10 +33,17 @@ Plug 'zchee/deoplete-go', { 'do': 'make'}
 Plug 'nsf/gocode', { 'rtp': 'nvim', 'do': '~/.config/nvim/plugged/gocode/nvim/symlink.sh' }
 
 
+" Rust stuff
+Plug 'rust-lang/rust.vim'
+
 Plug 'neomake/neomake'
 
+Plug 'google/vim-ft-bzl'
+Plug 'helino/vim-nasm'
 
 Plug 'kien/rainbow_parentheses.vim'
+
+Plug 'elixir-lang/vim-elixir'
 
 " Git
 Plug 'tpope/vim-fugitive'

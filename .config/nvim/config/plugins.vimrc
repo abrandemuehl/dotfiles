@@ -8,6 +8,26 @@ autocmd VimEnter * RainbowParenthesesToggle
 autocmd Syntax * RainbowParenthesesLoadRound
 autocmd Syntax * RainbowParenthesesLoadSquare
 autocmd Syntax * RainbowParenthesesLoadBraces
+
+" \ ['Darkblue',    'firebrick3'],
+" \ ['Darkblue',    'SeaGreen3'],
+let g:rbpt_colorpairs = [
+    \ ['brown',       'RoyalBlue3'],
+    \ ['darkgray',    'DarkOrchid3'],
+    \ ['darkgreen',   'firebrick3'],
+    \ ['darkcyan',    'RoyalBlue3'],
+    \ ['darkred',     'SeaGreen3'],
+    \ ['darkmagenta', 'DarkOrchid3'],
+    \ ['brown',       'firebrick3'],
+    \ ['gray',        'RoyalBlue3'],
+    \ ['darkmagenta', 'DarkOrchid3'],
+    \ ['darkgreen',   'RoyalBlue3'],
+    \ ['darkcyan',    'SeaGreen3'],
+    \ ['darkred',     'DarkOrchid3'],
+    \ ['red',         'firebrick3'],
+    \ ]
+
+let g:rbpt_max = 13
 "end rainbow_parentheses======================================================="
 
 
@@ -35,6 +55,8 @@ let g:NERDTreeShowHidden=1
 
 "neomake======================================================================="
 autocmd! BufWritePost * Neomake
+let g:neomake_cpp_enable_markers=['clang']
+let g:neomake_cpp_clang_args = ["-std=c++14", "-Wextra", "-Wall", "-fsanitize=undefined","-g"]
 "end neomake==================================================================="
 
 "deoplete======================================================================"
@@ -43,8 +65,8 @@ let g:deoplete#auto_complete_start_length = 1
 "end deoplete=================================================================="
 "
 "deoplete-clang================================================================"
-let g:deoplete#sources#clang#libclang_path = "/usr/local/Cellar/llvm/3.6.2/lib/libclang.dylib"
-let g:deoplete#sources#clang#clang_header = "/usr/local/Cellar/llvm/3.6.2/lib/clang/3.6.2/include/"
+" let g:deoplete#sources#clang#libclang_path = "/usr/local/Cellar/llvm/3.6.2/lib/libclang.dylib"
+" let g:deoplete#sources#clang#clang_header = "/usr/local/Cellar/llvm/3.6.2/lib/clang/3.6.2/include/"
 "end deoplete-clang============================================================"
 
 "neocomplete==================================================================="

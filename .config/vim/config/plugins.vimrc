@@ -85,14 +85,6 @@ endfor
 
 
 
-"session======================================================================="
-let g:session_autosave = 'no'
-let g:session_autoload = 'yes'
-map <C-s> :SaveSession!<CR>
-"end session==================================================================="
-
-
-
 "airline======================================================================="
 " let g:airline_theme = 'powerlineish'
 " let g:airline_powerline_fonts = 1

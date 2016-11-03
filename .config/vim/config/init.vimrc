@@ -15,7 +15,7 @@ Plug 'osyo-manga/vim-over'
 Plug 'tmhedberg/matchit'
 Plug 'elzr/vim-json', {'for':'json'}
 Plug 'xolox/vim-misc'
-Plug 'xolox/vim-session'
+" Plug 'xolox/vim-session'
 Plug 'mkarmona/colorsbox'
 Plug 'unblevable/quick-scope'
 Plug 'tpope/vim-endwise'

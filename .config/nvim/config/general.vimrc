@@ -1,6 +1,7 @@
 syntax on
 filetype plugin indent on
 
+set wildignorecase
 set wildmenu
 set hlsearch
 set incsearch

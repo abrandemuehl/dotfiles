@@ -44,11 +44,11 @@
 [profiles]
   [[default]]
     allow_bold = False
-    background_color = "#333333"
     background_image = None
+    cursor_color = "#ffffff"
     font = Ubuntu Mono derivative Powerline 10
     foreground_color = "#ffffff"
-    palette = "#000000:#cd0000:#00cd00:#cdcd00:#0000cd:#cd00cd:#00cdcd:#faebd7:#404040:#ff0000:#00ff00:#ffff00:#0000ff:#ff00ff:#00ffff:#ffffff"
+    palette = "#000000:#aa0000:#00aa00:#aa5500:#0000aa:#aa00aa:#00aaaa:#aaaaaa:#ffffff:#ff5555:#55ff55:#ffff55:#5555ff:#ff55ff:#55ffff:#ffffff"
     scrollback_infinite = True
     scrollback_lines = 1000
     scrollbar_position = hidden
