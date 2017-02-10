@@ -1,53 +1,35 @@
+(setq config-directory "~/.emacs.d/config")
 
-;; Added by Package.el.  This must come before configurations of
-;; installed packages.  Don't delete this line.  If you don't want it,
-;; just comment it out by adding a semicolon to the start of the line.
-;; You may delete these explanatory comments.
+(setq package-archives '(("melpa" . "http://melpa.org/packages/")
+                           ("org" . "http://orgmode.org/elpa/")
+                           ("gnu" . "http://elpa.gnu.org/packages/")))
+
 (package-initialize)
-
-(defgroup dotemacs nil
-  "Custom configuration for dotemacs."
-  :group 'local)
-
-
-
-(add-to-list 'load-path (concat user-emacs-directory "~/.emacs.d/config"))
-
-(defconst user-init-dir
-  (cond ((boundp 'user-emacs-directory)
-         user-emacs-directory)
-        ((boundp 'user-init-directory)
-         user-init-directory)
-        (t "~/.emacs.d/config")))
-
-
-(defun load-user-file (file)
-  (interactive "f")
-  "Load a file in current user's configuration directory"
-  (load-file (expand-file-name file user-init-dir)))
-
-(require 'cl)
-(load-user-file "/config/init-core.el")
-(require 'init-packages)
-(let ((debug-on-error t))
-  (require 'init-evil)
-)
-(load "~/.emacs.d/packages.el")
+(defun require-package (package)
+  "Ensures that PACKAGE is installed."
+  (unless (or (package-installed-p package)
+              (require package nil 'noerror))
+    (unless (assoc package package-archive-contents)
+      (package-refresh-contents))
+    (package-install package)))
 
 
 
 
 
 
+(setq base-dir "~/.emacs.d/")
+(setq cache-dir (concat base-dir "cache/"))
+(setq config-dir (concat base-dir "config/"))
 
+(setq completion-engine 'company)
+(setq pair-engine 'emacs)
+(global-linum-mode 1)
 
-
-
-
-
-
-
-
+(load (concat config-dir "init-boot.el"))
+(cl-loop for file in (directory-files config-directory t)
+  when (string-match "\\.el$" file)
+  do (load file))
 
 
 
@@ -56,9 +38,9 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(custom-safe-themes
+ '(package-selected-packages
    (quote
-    ("f0b0710b7e1260ead8f7808b3ee13c3bb38d45564e369cbe15fc6d312f0cd7a0" "3c83b3676d796422704082049fc38b6966bcad960f896669dfc21a7a37a748fa" default))))
+    (cuda-mode systemd spaceline rainbow-delimiters monokai-theme material-theme gruvbox-theme flycheck evil-visualstar evil-surround evil-numbers evil-matchit evil-leader evil-indent-textobject evil-commentary diminish company))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

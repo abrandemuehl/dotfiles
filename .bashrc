@@ -53,12 +53,3 @@ export EDITOR="vim"
 
 source $HOME/.bashrc.local
 
-set -o vi
-
-export PATH="$PATH:"/opt/microchip/xc16/v1.26/bin""
-
-export PATH=$PATH:"/opt/microchip/xc16/v1.24/bin"
-
-export QSYS_ROOTDIR="/home/adrian/Software/altera/15.0/quartus/sopc_builder/bin"
-
-export ALTERAOCLSDKROOT="/home/adrian/Software/altera/15.0/hld"
