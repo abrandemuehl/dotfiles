@@ -40,7 +40,9 @@ Plug 'rust-lang/rust.vim'
 
 " Async Makers
 Plug 'neomake/neomake'
-Plug 'dojoteef/neomake-autolint'
+
+
+Plug 'rhysd/vim-clang-format'
 
 Plug 'google/vim-ft-bzl'
 

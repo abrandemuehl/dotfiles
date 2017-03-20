@@ -59,8 +59,13 @@ let g:neomake_c_enabled_makers=['clangcheck']
 let g:neomake_cpp_enabled_makers=['clangcheck']
 "end neomake==================================================================="
 
-"neomake_autolint==============================================================
-"end neomake_autolint==========================================================
+"neomake_autolint=============================================================="
+"end neomake_autolint=========================================================="
+
+"clang_format=================================================================="
+let g:clang_format#code_style='google'
+autocmd FileType c,cuda,cpp ClangFormatAutoEnable
+"end clang_format=============================================================="
 
 "YouCompleteMe================================================================="
 "end YouCompleteMe============================================================="
