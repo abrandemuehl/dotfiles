@@ -22,28 +22,29 @@ Plug 'unblevable/quick-scope'
 Plug 'tpope/vim-endwise'
 
 " Autocompletion stuff
-Plug 'Shougo/deoplete.nvim', { 'do': function('DoRemote') }
-Plug 'zchee/deoplete-jedi'
-Plug 'zchee/deoplete-clang'
+Plug 'SirVer/ultisnips'
+Plug 'Valloric/YouCompleteMe', { 'do': './install.py --all' }
+" Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+" Plug 'zchee/deoplete-jedi'
+" Plug 'zchee/deoplete-clang'
 Plug 'ervandew/supertab'
 
 " Go stuff
 Plug 'fatih/vim-go'
-Plug 'zchee/deoplete-go', { 'do': 'make'}
+" Plug 'zchee/deoplete-go', { 'do': 'make'}
 Plug 'nsf/gocode', { 'rtp': 'nvim', 'do': '~/.config/nvim/plugged/gocode/nvim/symlink.sh' }
 
 
 " Rust stuff
 Plug 'rust-lang/rust.vim'
 
+" Async Makers
 Plug 'neomake/neomake'
+Plug 'dojoteef/neomake-autolint'
 
 Plug 'google/vim-ft-bzl'
-Plug 'helino/vim-nasm'
 
 Plug 'kien/rainbow_parentheses.vim'
-
-Plug 'elixir-lang/vim-elixir'
 
 " Git
 Plug 'tpope/vim-fugitive'
@@ -59,6 +60,8 @@ Plug 'tpope/vim-commentary'
 Plug 'vim-scripts/InsertChar'
 Plug 'vim-scripts/argtextobj.vim'
 
+
+Plug 'elixir-lang/vim-elixir'
 
 Plug 'editorconfig/editorconfig-vim'
 call plug#end()

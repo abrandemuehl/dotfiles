@@ -55,10 +55,15 @@ let g:NERDTreeShowHidden=1
 
 "neomake======================================================================="
 autocmd! BufWritePost * Neomake
-let g:neomake_cpp_enable_markers=['clang']
-let g:neomake_cpp_clang_args = ["-std=c++14", "-Wextra", "-Wall", "-fsanitize=undefined","-g"]
+let g:neomake_c_enabled_makers=['clangcheck']
+let g:neomake_cpp_enabled_makers=['clangcheck']
 "end neomake==================================================================="
 
+"neomake_autolint==============================================================
+"end neomake_autolint==========================================================
+
+"YouCompleteMe================================================================="
+"end YouCompleteMe============================================================="
 "deoplete======================================================================"
 let g:deoplete#enable_at_startup = 1
 let g:deoplete#auto_complete_start_length = 1
@@ -93,6 +98,7 @@ nnoremap <Leader>p :CtrlP<cr>
 
 "supertab======================================================================"
 let g:SuperTabDefaultCompletionType = '<C-n>'
+inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 "end supertab=================================================================="
 
 
