@@ -3,8 +3,8 @@ set nocompatible
 " Set up vim plugins
 call plug#begin('~/.vim/plugged')
 Plug 'L9'
-" Plug 'bling/vim-airline'
-" Plug 'vim-airline/vim-airline-themes'
+Plug 'bling/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 Plug 'jiangmiao/auto-pairs'
 Plug 'lilydjwg/colorizer'
 Plug 'ctrlpvim/ctrlp.vim'

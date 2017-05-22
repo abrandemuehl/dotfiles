@@ -32,8 +32,8 @@ set completeopt=menu
 set lazyredraw
 set mouse=a
 
-
-autocmd BufWritePre * :%s/\s\+$//e
+set guicursor=
+" autocmd BufWritePre * :%s/\s\+$//e
 colorscheme colorsbox-stnight
 let mapleader = " "
 

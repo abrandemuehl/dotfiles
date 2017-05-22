@@ -1,9 +1,14 @@
 [global_config]
+  dbus = False
   enabled_plugins = ,
-  suppress_multiple_term_dialog = True
+  geometry_hinting = True
+  title_font = Ubuntu Mono derivative Powerline 9
   title_hide_sizetext = True
+  title_use_system_font = False
 [keybindings]
   broadcast_all = None
+  broadcast_group = None
+  broadcast_off = None
   close_term = <Ctrl>W
   close_window = None
   full_screen = <Ctrl><Shift>F11
@@ -37,18 +42,18 @@
     [[[child0]]]
       order = 0
       parent = ""
-      position = 1440:0
-      size = 800, 525
+      position = 0:0
+      size = 800, 450
       type = Window
 [plugins]
 [profiles]
   [[default]]
-    allow_bold = False
-    background_image = None
+    cursor_blink = False
     cursor_color = "#ffffff"
-    font = Ubuntu Mono derivative Powerline 10
+    font = Ubuntu Mono 10
     foreground_color = "#ffffff"
-    palette = "#000000:#aa0000:#00aa00:#aa5500:#0000aa:#aa00aa:#00aaaa:#aaaaaa:#ffffff:#ff5555:#55ff55:#ffff55:#5555ff:#ff55ff:#55ffff:#ffffff"
+    icon_bell = False
+    palette = "#000000:#aa0000:#00aa00:#aa5500:#03afc9:#aa00aa:#00aaaa:#aaaaaa:#ffffff:#ff5555:#55ff55:#ffff55:#5555ff:#ff55ff:#55ffff:#ffffff"
     scrollback_infinite = True
     scrollback_lines = 1000
     scrollbar_position = hidden

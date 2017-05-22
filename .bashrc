@@ -53,3 +53,8 @@ export EDITOR="vim"
 
 source $HOME/.bashrc.local
 
+export LC_ALL=en_US.UTF-8
+export LANG=en_us.UTF-8
+export LC_CTYPE=en_US.UTF-8
+
+export PATH="~/.local/bin:$PATH"

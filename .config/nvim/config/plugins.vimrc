@@ -57,6 +57,9 @@ let g:NERDTreeShowHidden=1
 autocmd! BufWritePost * Neomake
 let g:neomake_c_enabled_makers=['clangcheck']
 let g:neomake_cpp_enabled_makers=['clangcheck']
+" let g:neomake_cpp_clangcheck_maker = {
+"             \ 'args': ['-extra-arg-before=-stdlib=libc++']
+"             \}
 "end neomake==================================================================="
 
 "neomake_autolint=============================================================="
@@ -64,7 +67,7 @@ let g:neomake_cpp_enabled_makers=['clangcheck']
 
 "clang_format=================================================================="
 let g:clang_format#code_style='google'
-autocmd FileType c,cuda,cpp ClangFormatAutoEnable
+" autocmd FileType cpp ClangFormatAutoEnable
 "end clang_format=============================================================="
 
 "YouCompleteMe================================================================="

@@ -12,3 +12,9 @@ autocmd BufRead,BufNewFile *.BUILD setlocal filetype=bzl
 autocmd BufRead,BufNewFile *.ui setlocal filetype=xml
 
 autocmd FileType yaml setlocal shiftwidth=2 tabstop=2
+
+
+
+" Don't indent c++ namespaces
+autocmd FileType cpp set cino=N-s
+

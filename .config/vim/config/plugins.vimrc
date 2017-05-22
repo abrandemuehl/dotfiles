@@ -86,9 +86,9 @@ endfor
 
 
 "airline======================================================================="
-" let g:airline_theme = 'powerlineish'
-" let g:airline_powerline_fonts = 1
-" let g:airline_detect_modified=1
+let g:airline_theme = 'powerlineish'
+let g:airline_powerline_fonts = 1
+let g:airline_detect_modified=1
 "end airline==================================================================="
 
 

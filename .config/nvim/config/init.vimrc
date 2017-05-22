@@ -22,7 +22,6 @@ Plug 'unblevable/quick-scope'
 Plug 'tpope/vim-endwise'
 
 " Autocompletion stuff
-Plug 'SirVer/ultisnips'
 Plug 'Valloric/YouCompleteMe', { 'do': './install.py --all' }
 " Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 " Plug 'zchee/deoplete-jedi'
@@ -50,6 +49,8 @@ Plug 'kien/rainbow_parentheses.vim'
 
 " Git
 Plug 'tpope/vim-fugitive'
+
+Plug 'tpope/vim-sleuth'
 
 " Nerdtree stuff
 Plug 'scrooloose/nerdtree'
