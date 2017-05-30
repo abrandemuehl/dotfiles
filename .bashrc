@@ -20,7 +20,12 @@ HISTFILESIZE=2000
 shopt -s checkwinsize
 
 # some more ls aliases
-alias ls='ls -G'
+DIST=$(lsb_release -is)
+if [[ $DIST -eq "Ubuntu" ]]; then
+    alias ls='ls --color'
+else
+    alias ls='ls -G'
+fi
 alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
