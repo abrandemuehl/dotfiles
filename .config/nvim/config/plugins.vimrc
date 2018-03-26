@@ -2,7 +2,6 @@
 
 
 
-
 "rainbow_parentheses==========================================================="
 autocmd VimEnter * RainbowParenthesesToggle
 autocmd Syntax * RainbowParenthesesLoadRound
@@ -92,14 +91,14 @@ let g:neocomplete#sources#syntax#min_keyword_length = 1
 
 
 "ctrlp========================================================================="
-let g:ctrlp_map = '<Leader>p'
-let g:ctrlp_use_caching=0
-let g:ctrlp_working_path_mode = 'ra'
-let g:ctrlp_by_filename = 1
-let g:ctrlp_max_files=0
-let g:ctrlp_user_command = ['.git/', 'cd %s && git ls-files']
-set wildignore+=*/tmp/*,*.so,*.sw*,*.zip,.git/*,*.class
-nnoremap <Leader>p :CtrlP<cr>
+"let g:ctrlp_map = '<Leader>p'
+"let g:ctrlp_use_caching=0
+"let g:ctrlp_working_path_mode = 'ra'
+"let g:ctrlp_by_filename = 1
+"let g:ctrlp_max_files=0
+"let g:ctrlp_user_command = ['.git/', 'cd %s && git ls-files']
+"set wildignore+=*/tmp/*,*.so,*.sw*,*.zip,.git/*,*.class
+"nnoremap <Leader>p :CtrlP<cr>
 "end ctrlp====================================================================="
 
 
@@ -149,6 +148,9 @@ map <C-s> :SaveSession!<CR>
 "end airline==================================================================="
 
 
+"vim-commentary================================================================"
+autocmd FileType c,c++ setlocal commentstring=//\ %s
+"end vim-commentary============================================================"
 
 "eclim========================================================================="
 let g:EclimSignLevel = 'error'

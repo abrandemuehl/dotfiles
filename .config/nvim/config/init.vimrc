@@ -8,7 +8,7 @@ Plug 'L9'
 " Plug 'vim-airline/vim-airline-themes'
 Plug 'jiangmiao/auto-pairs'
 Plug 'lilydjwg/colorizer'
-Plug 'ctrlpvim/ctrlp.vim'
+" Plug 'ctrlpvim/ctrlp.vim'
 Plug 'gregsexton/MatchTag'
 Plug 'osyo-manga/vim-over'
 
@@ -49,6 +49,7 @@ Plug 'kien/rainbow_parentheses.vim'
 
 " Git
 Plug 'tpope/vim-fugitive'
+Plug 'airblade/vim-gitgutter'
 
 Plug 'tpope/vim-sleuth'
 
