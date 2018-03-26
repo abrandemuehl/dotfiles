@@ -48,6 +48,7 @@
 [plugins]
 [profiles]
   [[default]]
+    background_darkness = 0.6
     cursor_blink = False
     cursor_color = "#ffffff"
     font = Ubuntu Mono 10
