@@ -42,7 +42,6 @@
     [[[child0]]]
       order = 0
       parent = ""
-      position = 0:0
       size = 800, 450
       type = Window
 [plugins]
