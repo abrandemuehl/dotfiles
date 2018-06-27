@@ -8,7 +8,7 @@ Plug 'L9'
 " Plug 'vim-airline/vim-airline-themes'
 Plug 'jiangmiao/auto-pairs'
 Plug 'lilydjwg/colorizer'
-" Plug 'ctrlpvim/ctrlp.vim'
+Plug 'ctrlpvim/ctrlp.vim'
 Plug 'gregsexton/MatchTag'
 Plug 'osyo-manga/vim-over'
 
@@ -21,8 +21,8 @@ Plug 'mkarmona/colorsbox'
 Plug 'unblevable/quick-scope'
 Plug 'tpope/vim-endwise'
 
-" Autocompletion stuff
-Plug 'Valloric/YouCompleteMe', { 'do': './install.py --all' }
+" Autocompletion stuff - Must have clang installed
+Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer' }
 " Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 " Plug 'zchee/deoplete-jedi'
 " Plug 'zchee/deoplete-clang'

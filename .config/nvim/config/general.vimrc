@@ -19,6 +19,7 @@ set expandtab
 set smarttab
 set shiftwidth=4
 set tabstop=4
+set tw=80
 
 set autoread
 set autochdir

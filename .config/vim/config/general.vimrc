@@ -1,13 +1,11 @@
 syntax on
 filetype plugin indent on
 
-
-set encoding=utf-8
-set t_Co=256
+set wildignorecase
 set wildmenu
 set hlsearch
 set incsearch
-set clipboard=unnamed,unnamedplus
+set clipboard^=unnamedplus
 set ignorecase
 set smartcase
 set autoindent
@@ -21,6 +19,7 @@ set expandtab
 set smarttab
 set shiftwidth=4
 set tabstop=4
+set tw=80
 
 set autoread
 set autochdir
@@ -32,10 +31,10 @@ set laststatus=2
 set background=dark
 set completeopt=menu
 set lazyredraw
-set mouse=a
+set mouse=r
 
-
-autocmd BufWritePre * :%s/\s\+$//e
+set guicursor=
+" autocmd BufWritePre * :%s/\s\+$//e
 colorscheme colorsbox-stnight
 let mapleader = " "
 

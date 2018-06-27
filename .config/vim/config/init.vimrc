@@ -1,10 +1,11 @@
-set nocompatible
-
 " Set up vim plugins
-call plug#begin('~/.vim/plugged')
+function! DoRemote(arg)
+  UpdateRemotePlugins
+endfunction
+call plug#begin('~/.config/nvim/plugged')
 Plug 'L9'
-Plug 'bling/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
+" Plug 'bling/vim-airline'
+" Plug 'vim-airline/vim-airline-themes'
 Plug 'jiangmiao/auto-pairs'
 Plug 'lilydjwg/colorizer'
 Plug 'ctrlpvim/ctrlp.vim'
@@ -20,14 +21,40 @@ Plug 'mkarmona/colorsbox'
 Plug 'unblevable/quick-scope'
 Plug 'tpope/vim-endwise'
 
-" Autocompletion stuff
-Plug 'shougo/neocomplete'
+" Autocompletion stuff - Must have clang installed
+" Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer' }
+" Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+" Plug 'zchee/deoplete-jedi'
+" Plug 'zchee/deoplete-clang'
 Plug 'ervandew/supertab'
 
 " Go stuff
 Plug 'fatih/vim-go'
+" Plug 'zchee/deoplete-go', { 'do': 'make'}
+Plug 'nsf/gocode', { 'rtp': 'nvim', 'do': '~/.config/nvim/plugged/gocode/nvim/symlink.sh' }
+
+" Python stuff
+" Plug 'nvie/vim-flake8'
+" Plug 'tell-k/vim-autopep8'
+
+" Rust stuff
+Plug 'rust-lang/rust.vim'
+
+" Async Makers
+Plug 'neomake/neomake'
+
+
+Plug 'rhysd/vim-clang-format'
+
+Plug 'google/vim-ft-bzl'
 
 Plug 'kien/rainbow_parentheses.vim'
+
+" Git
+Plug 'tpope/vim-fugitive'
+Plug 'airblade/vim-gitgutter'
+
+Plug 'tpope/vim-sleuth'
 
 " Nerdtree stuff
 Plug 'scrooloose/nerdtree'
@@ -40,6 +67,8 @@ Plug 'tpope/vim-commentary'
 Plug 'vim-scripts/InsertChar'
 Plug 'vim-scripts/argtextobj.vim'
 
+
+Plug 'elixir-lang/vim-elixir'
 
 Plug 'editorconfig/editorconfig-vim'
 call plug#end()

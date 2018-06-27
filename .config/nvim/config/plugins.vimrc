@@ -70,6 +70,7 @@ let g:clang_format#code_style='google'
 "end clang_format=============================================================="
 
 "YouCompleteMe================================================================="
+let g:ycm_confirm_extra_conf = 0
 "end YouCompleteMe============================================================="
 "deoplete======================================================================"
 let g:deoplete#enable_at_startup = 1
@@ -149,7 +150,7 @@ map <C-s> :SaveSession!<CR>
 
 
 "vim-commentary================================================================"
-autocmd FileType c,c++ setlocal commentstring=//\ %s
+autocmd FileType c,cpp setlocal commentstring=//\ %s
 "end vim-commentary============================================================"
 
 "eclim========================================================================="
