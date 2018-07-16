@@ -31,7 +31,7 @@ set laststatus=2
 set background=dark
 set completeopt=menu
 set lazyredraw
-set mouse=r
+set mouse=a
 
 set guicursor=
 " autocmd BufWritePre * :%s/\s\+$//e

@@ -93,13 +93,34 @@ let g:neocomplete#sources#syntax#min_keyword_length = 1
 
 "ctrlp========================================================================="
 "let g:ctrlp_map = '<Leader>p'
-"let g:ctrlp_use_caching=0
+let g:ctrlp_use_caching=1
 "let g:ctrlp_working_path_mode = 'ra'
 "let g:ctrlp_by_filename = 1
 "let g:ctrlp_max_files=0
 "let g:ctrlp_user_command = ['.git/', 'cd %s && git ls-files']
-"set wildignore+=*/tmp/*,*.so,*.sw*,*.zip,.git/*,*.class
+" set wildignore+=*/tmp/*,*.so,*.sw*,*.zip,.git/*,*.class
 "nnoremap <Leader>p :CtrlP<cr>
+let g:ctrlp_custom_ignore = {
+\ 'dir':  '\.git$\|\.yardoc\|public$|log\|tmp$|bazel-*',
+\ 'file': '\.so$\|\.dat$|\.DS_Store$'
+\ }
+if executable('ag')
+  set grepprg=ag\ --nogroup\ --nocolor 
+
+  " let g:ctrlp_match_window = 'bottom,order:ttb'
+  " let g:ctrlp_switch_buffer = 0
+  " let g:ctrlp_working_path_mode = 'ra'
+  let g:ctrlp_use_caching = 0
+  let g:ctrlp_user_command = ['ag %s --files-with-matches -g ""']
+  " let g:ctrlp_user_command += ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
+endif 
+" Use The Silver Searcher https://github.com/ggreer/the_silver_searcher
+" if executable('ag')
+"     " Use Ag over Grep
+"     set grepprg=ag\ --nogroup\ --nocolor
+"     " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
+"     let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+" endif
 "end ctrlp====================================================================="
 
 
@@ -136,7 +157,11 @@ endfor
 
 "session======================================================================="
 let g:session_autosave = 'no'
-let g:session_autoload = 'yes'
+let g:session_autoload = 'prompt'
+let g:session_directory = '.'
+let g:session_default_name = '.session'
+let g:session_extension = '.vim'
+let g:session_default_overwrite = 1
 map <C-s> :SaveSession!<CR>
 "end session==================================================================="
 
@@ -150,7 +175,7 @@ map <C-s> :SaveSession!<CR>
 
 
 "vim-commentary================================================================"
-autocmd FileType c,c++ setlocal commentstring=//\ %s
+autocmd FileType c,cpp setlocal commentstring=//\ %s
 "end vim-commentary============================================================"
 
 "eclim========================================================================="

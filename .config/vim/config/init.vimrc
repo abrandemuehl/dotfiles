@@ -12,17 +12,19 @@ Plug 'ctrlpvim/ctrlp.vim'
 Plug 'gregsexton/MatchTag'
 Plug 'osyo-manga/vim-over'
 
+Plug 'jlanzarotta/bufexplorer'
+
 " Plug 'marijnh/tern_for_vim', { 'do': 'npm install' }
 Plug 'tmhedberg/matchit'
 Plug 'elzr/vim-json', {'for':'json'}
 Plug 'xolox/vim-misc'
-" Plug 'xolox/vim-session'
+Plug 'xolox/vim-session'
 Plug 'mkarmona/colorsbox'
 Plug 'unblevable/quick-scope'
 Plug 'tpope/vim-endwise'
 
 " Autocompletion stuff - Must have clang installed
-" Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer' }
+Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer' }
 " Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 " Plug 'zchee/deoplete-jedi'
 " Plug 'zchee/deoplete-clang'
