@@ -1,0 +1,6 @@
+[Desktop Entry]
+Name=syndaemon
+Exec=syndaemon -i 1.0 -d -K
+Terminal=false
+Type=Application
+X-GNOME-Autostart-enabled=true
