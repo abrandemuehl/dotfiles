@@ -17,4 +17,5 @@ autocmd FileType yaml setlocal shiftwidth=2 tabstop=2
 
 
 " Don't indent c++ namespaces
-autocmd FileType cpp set cino=N-s
+autocmd FileType cpp set cinoptions=:0,l1,g0,t0,i0,(0,w1,N-s
+autocmd FileType h set ft=cpp

@@ -33,6 +33,9 @@ set completeopt=menu
 set lazyredraw
 set mouse=a
 
+" Store vim swap files in a different location
+set directory=$HOME/.config/vim/swapfiles//
+
 set guicursor=
 " autocmd BufWritePre * :%s/\s\+$//e
 colorscheme colorsbox-stnight

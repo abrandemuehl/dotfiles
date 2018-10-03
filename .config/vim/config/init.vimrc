@@ -18,10 +18,14 @@ Plug 'jlanzarotta/bufexplorer'
 Plug 'tmhedberg/matchit'
 Plug 'elzr/vim-json', {'for':'json'}
 Plug 'xolox/vim-misc'
-Plug 'xolox/vim-session'
+" Plug 'xolox/vim-session'
 Plug 'mkarmona/colorsbox'
 Plug 'unblevable/quick-scope'
 Plug 'tpope/vim-endwise'
+
+Plug 'google/vim-maktaba'
+Plug 'google/vim-codefmt'
+Plug 'google/vim-glaive'
 
 " Autocompletion stuff - Must have clang installed
 Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer' }
@@ -43,7 +47,7 @@ Plug 'nsf/gocode', { 'rtp': 'nvim', 'do': '~/.config/nvim/plugged/gocode/nvim/sy
 Plug 'rust-lang/rust.vim'
 
 " Async Makers
-Plug 'neomake/neomake'
+" Plug 'neomake/neomake'
 
 
 Plug 'rhysd/vim-clang-format'
@@ -74,4 +78,4 @@ Plug 'elixir-lang/vim-elixir'
 
 Plug 'editorconfig/editorconfig-vim'
 call plug#end()
-
+call glaive#Install()

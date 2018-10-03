@@ -1,5 +1,20 @@
+"vim-codefmt==================================================================="
+au FileType * nmap <Leader>= :FormatCode<cr>
+augroup autoformat_settings
+  autocmd FileType bzl AutoFormatBuffer buildifier
+  autocmd FileType c,cpp,proto,javascript AutoFormatBuffer clang-format
+  autocmd FileType dart AutoFormatBuffer dartfmt
+  autocmd FileType go AutoFormatBuffer gofmt
+  autocmd FileType gn AutoFormatBuffer gn
+  autocmd FileType html,css,json AutoFormatBuffer js-beautify
+  autocmd FileType java AutoFormatBuffer google-java-format
+  autocmd FileType python AutoFormatBuffer yapf
+  " Alternative: autocmd FileType python AutoFormatBuffer autopep8
+augroup END
 
+Glaive codefmt clang_format_style="Google"
 
+"end vim-codefmt==============================================================="
 
 
 "rainbow_parentheses==========================================================="
@@ -53,9 +68,9 @@ let g:NERDTreeShowHidden=1
 
 
 "neomake======================================================================="
-autocmd! BufWritePost * Neomake
-let g:neomake_c_enabled_makers=['clangcheck']
-let g:neomake_cpp_enabled_makers=['clangcheck']
+" autocmd! BufWritePost * Neomake
+" let g:neomake_c_enabled_makers=['clangcheck']
+" let g:neomake_cpp_enabled_makers=['clangcheck']
 " let g:neomake_cpp_clangcheck_maker = {
 "             \ 'args': ['-extra-arg-before=-stdlib=libc++']
 "             \}
@@ -156,13 +171,13 @@ endfor
 
 
 "session======================================================================="
-let g:session_autosave = 'no'
-let g:session_autoload = 'prompt'
-let g:session_directory = '.'
-let g:session_default_name = '.session'
-let g:session_extension = '.vim'
-let g:session_default_overwrite = 1
-map <C-s> :SaveSession!<CR>
+" let g:session_autosave = 'no'
+" let g:session_autoload = 'prompt'
+" let g:session_directory = '~/.config/vim/sessions'
+" let g:session_default_name = '.session'
+" let g:session_extension = '.vim'
+" let g:session_default_overwrite = 1
+" map <C-s> :SaveSession!<CR>
 "end session==================================================================="
 
 
