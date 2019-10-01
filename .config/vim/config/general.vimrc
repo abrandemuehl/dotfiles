@@ -2,10 +2,11 @@ syntax on
 filetype plugin indent on
 
 set wildignorecase
+set wildmode=longest,list,full
 set wildmenu
 set hlsearch
 set incsearch
-set clipboard^=unnamedplus
+set clipboard=unnamedplus
 set ignorecase
 set smartcase
 set autoindent
@@ -35,6 +36,11 @@ set mouse=a
 
 " Store vim swap files in a different location
 set directory=$HOME/.config/vim/swapfiles//
+
+" Store undo files to persist them between vim sessions
+set undofile
+set undodir=~/.config/vim/undodir
+
 
 set guicursor=
 " autocmd BufWritePre * :%s/\s\+$//e

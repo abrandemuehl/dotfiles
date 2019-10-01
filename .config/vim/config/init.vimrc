@@ -2,7 +2,7 @@
 function! DoRemote(arg)
   UpdateRemotePlugins
 endfunction
-call plug#begin('~/.config/nvim/plugged')
+call plug#begin('~/.config/vim/plugged')
 Plug 'L9'
 " Plug 'bling/vim-airline'
 " Plug 'vim-airline/vim-airline-themes'
@@ -37,7 +37,7 @@ Plug 'ervandew/supertab'
 " Go stuff
 Plug 'fatih/vim-go'
 " Plug 'zchee/deoplete-go', { 'do': 'make'}
-Plug 'nsf/gocode', { 'rtp': 'nvim', 'do': '~/.config/nvim/plugged/gocode/nvim/symlink.sh' }
+Plug 'nsf/gocode', { 'rtp': 'nvim', 'do': '~/.config/nvim/plugged/gocode/vim/symlink.sh' }
 
 " Python stuff
 " Plug 'nvie/vim-flake8'
@@ -73,6 +73,9 @@ Plug 'tpope/vim-commentary'
 Plug 'vim-scripts/InsertChar'
 Plug 'vim-scripts/argtextobj.vim'
 
+Plug 'vim-scripts/Align'
+
+Plug 'JuliaEditorSupport/julia-vim'
 
 Plug 'elixir-lang/vim-elixir'
 
