@@ -34,6 +34,10 @@ set completeopt=menu
 set lazyredraw
 set mouse=a
 
+" Fold configuration
+set foldmethod=indent
+set foldnestmax=1
+
 " Store vim swap files in a different location
 set directory=$HOME/.config/vim/swapfiles//
 
