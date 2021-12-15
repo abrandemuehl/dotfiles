@@ -58,6 +58,3 @@ export LANG=en_us.UTF-8
 export LC_CTYPE=en_US.UTF-8
 
 export HISTIGNORE='rm \*:rm -rf \*:rm -f \*'
-
-# AMZ Tool Helper 
-source ~/.amz/config/amz_source.sh
