@@ -2,13 +2,13 @@
 au FileType * nmap <Leader>= :FormatCode<cr>
 augroup autoformat_settings
   autocmd FileType bzl AutoFormatBuffer buildifier
-  " autocmd FileType c,cpp,proto,javascript AutoFormatBuffer clang-format
-  autocmd FileType dart AutoFormatBuffer dartfmt
-  autocmd FileType go AutoFormatBuffer gofmt
-  autocmd FileType gn AutoFormatBuffer gn
-  autocmd FileType html,css,json AutoFormatBuffer js-beautify
-  autocmd FileType java AutoFormatBuffer google-java-format
-  autocmd FileType python AutoFormatBuffer yapf
+  autocmd FileType c,cpp,proto AutoFormatBuffer clang-format
+  "autocmd FileType dart AutoFormatBuffer dartfmt
+  "autocmd FileType go AutoFormatBuffer gofmt
+  "autocmd FileType gn AutoFormatBuffer gn
+  " autocmd FileType html,css,json AutoFormatBuffer js-beautify
+  "autocmd FileType java AutoFormatBuffer google-java-format
+  " autocmd FileType python AutoFormatBuffer autopep8
   " Alternative: autocmd FileType python AutoFormatBuffer autopep8
 augroup END
 
@@ -86,6 +86,8 @@ let g:clang_format#code_style='google'
 
 "YouCompleteMe================================================================="
 let g:ycm_confirm_extra_conf = 0
+let g:ycm_complete_in_strings = 0
+let g:ycm_complete_in_comments = 0
 "end YouCompleteMe============================================================="
 "deoplete======================================================================"
 let g:deoplete#enable_at_startup = 1
@@ -211,3 +213,13 @@ let g:EclimCompletionMethod = 'omnifunc'
 "vim-autopep8=================================================================="
 " autocmd! BufWritePost python :Autopep8<CR>
 "end vim-autopep8============================================================="
+
+"vim-session=================================================================="
+let g:workspace_autocreate = 1
+let g:workspace_session_directory = $HOME . '/.config/vim/sessions/'
+let g:workspace_session_disable_on_args = 1
+let g:workspace_undodir=$HOME . '/.config/vim/undodir'
+let g:workspace_persist_undo_history = 1
+let g:workspace_autosave_always = 0
+let g:workspace_autosave = 0
+"end vim-session=============================================================="

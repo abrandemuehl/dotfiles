@@ -8,7 +8,7 @@ Plug 'L9'
 " Plug 'vim-airline/vim-airline-themes'
 Plug 'jiangmiao/auto-pairs'
 " Plug 'lilydjwg/colorizer'
-Plug 'ctrlpvim/ctrlp.vim'
+" Plug 'ctrlpvim/ctrlp.vim'
 Plug 'gregsexton/MatchTag'
 Plug 'osyo-manga/vim-over'
 
@@ -28,27 +28,25 @@ Plug 'google/vim-codefmt'
 Plug 'google/vim-glaive'
 
 " Autocompletion stuff - Must have clang installed
-Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer' }
+" Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer' }
+" Plug 'abrandemuehl/ycm-extra-conf-ros'
+
 " Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 " Plug 'zchee/deoplete-jedi'
 " Plug 'zchee/deoplete-clang'
-Plug 'ervandew/supertab'
+" Plug 'ervandew/supertab'
 
 " Go stuff
-Plug 'fatih/vim-go'
+" Plug 'fatih/vim-go'
 " Plug 'zchee/deoplete-go', { 'do': 'make'}
-Plug 'nsf/gocode', { 'rtp': 'nvim', 'do': '~/.config/nvim/plugged/gocode/vim/symlink.sh' }
+" Plug 'nsf/gocode', { 'rtp': 'nvim', 'do': '~/.config/nvim/plugged/gocode/vim/symlink.sh' }
 
 " Python stuff
 " Plug 'nvie/vim-flake8'
 " Plug 'tell-k/vim-autopep8'
 
-" Rust stuff
-Plug 'rust-lang/rust.vim'
-
-" Async Makers
-" Plug 'neomake/neomake'
-
+" Plug 'vim-pandoc/vim-pandoc'
+" Plug 'vim-pandoc/vim-pandoc-syntax'
 
 Plug 'rhysd/vim-clang-format'
 
@@ -63,22 +61,24 @@ Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-sleuth'
 
 " Nerdtree stuff
-Plug 'scrooloose/nerdtree'
-Plug 'Xuyuanp/nerdtree-git-plugin'
+" Plug 'scrooloose/nerdtree'
+" Plug 'Xuyuanp/nerdtree-git-plugin'
 
 " Special plugins that extend the vim language
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
-Plug 'vim-scripts/InsertChar'
+" Plug 'vim-scripts/InsertChar'
 Plug 'vim-scripts/argtextobj.vim'
 
-Plug 'vim-scripts/Align'
+" Plug 'vim-scripts/Align'
 
-Plug 'JuliaEditorSupport/julia-vim'
+" Plug 'JuliaEditorSupport/julia-vim'
 
-Plug 'elixir-lang/vim-elixir'
+" Plug 'elixir-lang/vim-elixir'
 
-Plug 'editorconfig/editorconfig-vim'
+" Plug 'editorconfig/editorconfig-vim'
+" Plug 'thaerkh/vim-workspace'
+
 call plug#end()
 call glaive#Install()

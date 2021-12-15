@@ -14,6 +14,7 @@ set ruler
 set confirm
 set backspace=2
 set number
+set foldnestmax=1
 
 " Tab settings
 set expandtab
@@ -24,7 +25,7 @@ set tw=80
 
 set autoread
 set autochdir
-set cursorline
+set nocursorline
 set novisualbell
 set noerrorbells
 set hidden
