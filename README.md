@@ -1,7 +1,14 @@
 # Basic setup
 
+## Install dependencies
 
-Install tpm
+
+### Ubuntu
+```
+sudo apt-get install -y tmux git vim-gtk3 cmake build-essential clangd
+```
+
+## Install tpm
 
 
 ```
