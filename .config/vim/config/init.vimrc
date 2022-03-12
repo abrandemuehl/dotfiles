@@ -5,11 +5,22 @@ endfunction
 call plug#begin('~/.config/vim/plugged')
 Plug 'L9'
 Plug 'jiangmiao/auto-pairs'
+
+
 Plug 'ctrlpvim/ctrlp.vim'
+Plug 'FelikZ/ctrlp-py-matcher'
+
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
+
 Plug 'gregsexton/MatchTag'
 Plug 'osyo-manga/vim-over'
 
 Plug 'jlanzarotta/bufexplorer'
+
+" Plug 'grailbio/bazel-compilation-database'
+
+Plug 'xolox/vim-session'
 
 Plug 'tmhedberg/matchit'
 Plug 'elzr/vim-json', {'for':'json'}

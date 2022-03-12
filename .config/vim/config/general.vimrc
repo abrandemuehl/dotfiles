@@ -21,7 +21,7 @@ set expandtab
 set smarttab
 set shiftwidth=4
 set tabstop=4
-set tw=80
+" set tw=80
 
 set autoread
 set autochdir
@@ -52,3 +52,4 @@ let mapleader = " "
 function! FormatJSON()
     :%!python -m json.tool
 endfunction
+

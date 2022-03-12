@@ -22,7 +22,11 @@ autocmd FileType matlab setlocal textwidth=0 wrapmargin=0
 
 
 " Don't indent c++ namespaces
-autocmd FileType cpp set cinoptions=:0,l1,g0,t0,i0,(0,w1,N-s
+" autocmd FileType cpp set cinoptions=:0,l1,g0,t0,i0,(0,w1,N-s
 autocmd FileType h set ft=cpp
 
+au FileType gitcommit setlocal tw=72
 
+
+" Remove trailing spaces on save
+autocmd BufWritePre * :%s/\s\+$//e

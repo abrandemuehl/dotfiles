@@ -12,7 +12,8 @@ augroup autoformat_settings
   " Alternative: autocmd FileType python AutoFormatBuffer autopep8
 augroup END
 
-Glaive codefmt clang_format_style="Google"
+Glaive codefmt clang_format_style="file"
+Glaive codefmt clang_format_executable="/home/abrandemuehl/.local/bin/clang-format-4.0"
 
 "end vim-codefmt==============================================================="
 
@@ -43,6 +44,8 @@ let g:rbpt_colorpairs = [
 
 let g:rbpt_max = 13
 "end rainbow_parentheses======================================================="
+
+let g:clang_format#code_style = 'file'
 
 
 
@@ -88,6 +91,8 @@ let g:clang_format#code_style='google'
 let g:ycm_confirm_extra_conf = 0
 let g:ycm_complete_in_strings = 0
 let g:ycm_complete_in_comments = 0
+
+nmap <leader>o :YcmCompleter GoTo<CR>
 "end YouCompleteMe============================================================="
 "deoplete======================================================================"
 let g:deoplete#enable_at_startup = 1
@@ -107,10 +112,19 @@ let g:neocomplete#sources#syntax#min_keyword_length = 1
 
 
 
+"fzf==========================================================================="
+let g:fzf_buffers_jump = 1
+nmap <leader>p :GFiles<CR>
+nmap <C-P> :GFiles<CR>
+
+
+"end fzf=======================================================================""
 
 "ctrlp========================================================================="
 "let g:ctrlp_map = '<Leader>p'
 let g:ctrlp_use_caching=1
+let g:ctrlp_max_files=0
+let g:ctrlp_cache_dir = $HOME . '/.cache/ctrlp'
 "let g:ctrlp_working_path_mode = 'ra'
 "let g:ctrlp_by_filename = 1
 "let g:ctrlp_max_files=0
@@ -121,17 +135,21 @@ let g:ctrlp_custom_ignore = {
 \ 'dir':  '\.git$\|\.yardoc\|public$|log\|tmp$|bazel-*',
 \ 'file': '\.so$\|\.dat$|\.DS_Store$'
 \ }
+let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
 if executable('ag')
-  set grepprg=ag\ --nogroup\ --nocolor 
+  let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+endif
+" if executable('ag')
+"   set grepprg=ag\ --nogroup\ --nocolor
 
-  " let g:ctrlp_match_window = 'bottom,order:ttb'
-  " let g:ctrlp_switch_buffer = 0
-  " let g:ctrlp_working_path_mode = 'ra'
-  let g:ctrlp_use_caching = 0
-  let g:ctrlp_user_command = ['ag %s --files-with-matches -g ""']
-  " let g:ctrlp_user_command += ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
-endif 
-" Use The Silver Searcher https://github.com/ggreer/the_silver_searcher
+"   " let g:ctrlp_match_window = 'bottom,order:ttb'
+"   " let g:ctrlp_switch_buffer = 0
+"   " let g:ctrlp_working_path_mode = 'ra'
+"   let g:ctrlp_use_caching = 0
+"   let g:ctrlp_user_command = ['ag %s --files-with-matches -g ""']
+"   " let g:ctrlp_user_command += ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
+" endif
+" " Use The Silver Searcher https://github.com/ggreer/the_silver_searcher
 " if executable('ag')
 "     " Use Ag over Grep
 "     set grepprg=ag\ --nogroup\ --nocolor
