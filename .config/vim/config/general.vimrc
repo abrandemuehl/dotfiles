@@ -35,6 +35,10 @@ set completeopt=menu
 set lazyredraw
 set mouse=a
 
+" Remove timeout on vim for Esc - O
+set timeoutlen=1000
+set ttimeoutlen=0
+
 " Store vim swap files in a different location
 set directory=$HOME/.config/vim/swapfiles//
 

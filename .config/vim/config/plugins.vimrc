@@ -2,7 +2,7 @@
 au FileType * nmap <Leader>= :FormatCode<cr>
 augroup autoformat_settings
   autocmd FileType bzl AutoFormatBuffer buildifier
-  autocmd FileType c,cpp,proto AutoFormatBuffer clang-format
+  autocmd FileType c,cpp AutoFormatBuffer clang-format
   "autocmd FileType dart AutoFormatBuffer dartfmt
   "autocmd FileType go AutoFormatBuffer gofmt
   "autocmd FileType gn AutoFormatBuffer gn
@@ -14,9 +14,14 @@ augroup END
 
 Glaive codefmt clang_format_style="file"
 Glaive codefmt clang_format_executable="/home/abrandemuehl/.local/bin/clang-format-4.0"
+Glaive codefmt buildifier_executable="/home/abrandemuehl/.local/bin/buildifier"
 
 "end vim-codefmt==============================================================="
 
+
+"tablify======================================================================="
+
+"end tablify==================================================================="
 
 "rainbow_parentheses==========================================================="
 autocmd VimEnter * RainbowParenthesesToggle
@@ -91,6 +96,8 @@ let g:clang_format#code_style='google'
 let g:ycm_confirm_extra_conf = 0
 let g:ycm_complete_in_strings = 0
 let g:ycm_complete_in_comments = 0
+let g:ycm_clangd_binary_path='clangd'
+let g:ycm_clangd_args='--malloc-trim'
 
 nmap <leader>o :YcmCompleter GoTo<CR>
 "end YouCompleteMe============================================================="
@@ -111,13 +118,14 @@ let g:neocomplete#sources#syntax#min_keyword_length = 1
 "end neocomplete==============================================================="
 
 
+"gitgutter====================================================================="
+let g:gitgutter_map_keys = 0
+"end gitgutter=================================================================""
 
 "fzf==========================================================================="
 let g:fzf_buffers_jump = 1
 nmap <leader>p :GFiles<CR>
 nmap <C-P> :GFiles<CR>
-
-
 "end fzf=======================================================================""
 
 "ctrlp========================================================================="

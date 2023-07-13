@@ -60,6 +60,11 @@ Plug 'tpope/vim-commentary'
 " Plug 'vim-scripts/InsertChar'
 Plug 'vim-scripts/argtextobj.vim'
 
+Plug 'mechatroner/rainbow_csv'
+
+" RST table formatter
+Plug 'Stormherz/tablify'
+
 " Plug 'vim-scripts/Align'
 
 " Plug 'JuliaEditorSupport/julia-vim'
