@@ -3,7 +3,7 @@ function! DoRemote(arg)
   UpdateRemotePlugins
 endfunction
 call plug#begin('~/.config/vim/plugged')
-Plug 'L9'
+Plug 'vim-scripts/L9'
 Plug 'jiangmiao/auto-pairs'
 
 

@@ -28,6 +28,7 @@ Plug 'google/vim-glaive'
 " Autocompletion stuff - Must have clang installed
 Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer' }
 Plug 'ervandew/supertab'
+Plug 'github/copilot.vim'
 
 Plug 'rhysd/vim-clang-format'
 

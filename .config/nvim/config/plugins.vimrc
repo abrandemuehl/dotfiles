@@ -130,8 +130,8 @@ nmap <C-P> :GFiles<CR>
 
 
 "supertab======================================================================"
-let g:SuperTabDefaultCompletionType = '<C-n>'
-inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+" let g:SuperTabDefaultCompletionType = '<C-n>'
+" inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 "end supertab=================================================================="
 
 
