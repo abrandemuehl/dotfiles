@@ -32,6 +32,8 @@ if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
     . /etc/bash_completion
 fi
 
+# Don't escape characters during tab completion
+shopt -s direxpand
 
 # Allow usage of Ctrl-s in vim
 stty -ixon

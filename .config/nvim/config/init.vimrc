@@ -30,8 +30,6 @@ Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer' }
 Plug 'ervandew/supertab'
 Plug 'github/copilot.vim'
 
-Plug 'rhysd/vim-clang-format'
-
 Plug 'google/vim-ft-bzl'
 
 Plug 'kien/rainbow_parentheses.vim'
@@ -44,10 +42,12 @@ Plug 'tpope/vim-sleuth'
 
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build' }
-Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'BurntSushi/ripgrep'
 Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.4' }
 
+" Treesitter
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate; :TSInstall all'}
+Plug 'nvim-treesitter/nvim-treesitter-textobjects'
 
 
 " Nerdtree stuff

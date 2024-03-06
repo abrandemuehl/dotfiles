@@ -50,7 +50,47 @@ let g:rbpt_colorpairs = [
 let g:rbpt_max = 13
 "end rainbow_parentheses======================================================="
 
-let g:clang_format#code_style = 'file'
+
+lua <<EOF
+require'nvim-treesitter.configs'.setup {
+  textobjects = {
+    select = {
+      enable = false,
+
+      -- Automatically jump forward to textobj, similar to targets.vim
+      lookahead = false,
+
+      keymaps = {
+        -- You can use the capture groups defined in textobjects.scm
+        ["aa"] = "@parameter.outer",
+        ["ia"] = "@parameter.inner",
+      },
+      -- You can choose the select mode (default is charwise 'v')
+      --
+      -- Can also be a function which gets passed a table with the keys
+      -- * query_string: eg '@function.inner'
+      -- * method: eg 'v' or 'o'
+      -- and should return the mode ('v', 'V', or '<c-v>') or a table
+      -- mapping query_strings to modes.
+      selection_modes = {
+        -- ['@parameter.outer'] = 'v', -- charwise
+        -- ['@function.outer'] = 'V', -- linewise
+        -- ['@class.outer'] = '<c-v>', -- blockwise
+      },
+      -- If you set this to `true` (default is `false`) then any textobject is
+      -- extended to include preceding or succeeding whitespace. Succeeding
+      -- whitespace has priority in order to act similarly to eg the built-in
+      -- `ap`.
+      --
+      -- Can also be a function which gets passed a table with the keys
+      -- * query_string: eg '@function.inner'
+      -- * selection_mode: eg 'v'
+      -- and should return true or false
+      include_surrounding_whitespace = true,
+    },
+  },
+}
+EOF
 
 
 
@@ -68,30 +108,6 @@ au FileType go nmap <Leader>e <Plug>(go-rename)
 
 
 
-"nerdtree======================================================================"
-map <leader>n :NERDTreeToggle<CR>
-let g:NERDSpaceDelims = 1
-let g:NERDTreeShowHidden=1
-"end nerdtree=================================================================="
-
-
-"neomake======================================================================="
-" autocmd! BufWritePost * Neomake
-" let g:neomake_c_enabled_makers=['clangcheck']
-" let g:neomake_cpp_enabled_makers=['clangcheck']
-" let g:neomake_cpp_clangcheck_maker = {
-"             \ 'args': ['-extra-arg-before=-stdlib=libc++']
-"             \}
-"end neomake==================================================================="
-
-"neomake_autolint=============================================================="
-"end neomake_autolint=========================================================="
-
-"clang_format=================================================================="
-let g:clang_format#code_style='google'
-" autocmd FileType cpp ClangFormatAutoEnable
-"end clang_format=============================================================="
-
 "YouCompleteMe================================================================="
 let g:ycm_confirm_extra_conf = 0
 let g:ycm_complete_in_strings = 0
@@ -101,22 +117,6 @@ let g:ycm_clangd_args='--malloc-trim'
 
 nmap <leader>o :YcmCompleter GoTo<CR>
 "end YouCompleteMe============================================================="
-"deoplete======================================================================"
-let g:deoplete#enable_at_startup = 1
-let g:deoplete#auto_complete_start_length = 1
-"end deoplete=================================================================="
-"
-"deoplete-clang================================================================"
-" let g:deoplete#sources#clang#libclang_path = "/usr/local/Cellar/llvm/3.6.2/lib/libclang.dylib"
-" let g:deoplete#sources#clang#clang_header = "/usr/local/Cellar/llvm/3.6.2/lib/clang/3.6.2/include/"
-"end deoplete-clang============================================================"
-
-"neocomplete==================================================================="
-let g:neocomplete#enable_at_startup = 1
-let g:neocomplete#enable_smart_case = 1
-let g:neocomplete#sources#syntax#min_keyword_length = 1
-"end neocomplete==============================================================="
-
 
 "gitgutter====================================================================="
 let g:gitgutter_map_keys = 0
