@@ -93,6 +93,9 @@ require'nvim-treesitter.configs'.setup {
 EOF
 
 
+lua <<EOF
+require('lsp')
+EOF
 
 
 
@@ -106,16 +109,14 @@ au FileType go nmap <Leader>e <Plug>(go-rename)
 "end vim-go===================================================================="
 
 
-
-
 "YouCompleteMe================================================================="
-let g:ycm_confirm_extra_conf = 0
-let g:ycm_complete_in_strings = 0
-let g:ycm_complete_in_comments = 0
-let g:ycm_clangd_binary_path='clangd'
-let g:ycm_clangd_args='--malloc-trim'
+" let g:ycm_confirm_extra_conf = 0
+" let g:ycm_complete_in_strings = 0
+" let g:ycm_complete_in_comments = 0
+" let g:ycm_clangd_binary_path='clangd'
+" let g:ycm_clangd_args='--malloc-trim'
 
-nmap <leader>o :YcmCompleter GoTo<CR>
+" nmap <leader>o :YcmCompleter GoTo<CR>
 "end YouCompleteMe============================================================="
 
 "gitgutter====================================================================="
