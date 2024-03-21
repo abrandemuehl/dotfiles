@@ -26,14 +26,16 @@ Plug 'google/vim-codefmt'
 Plug 'google/vim-glaive'
 
 " Autocompletion stuff - Must have clangd installed
+Plug 'williamboman/mason.nvim'
+Plug 'williamboman/mason-lspconfig.nvim'
+Plug 'neovim/nvim-lspconfig'
 Plug 'neovim/nvim-lspconfig'
 Plug 'hrsh7th/cmp-nvim-lsp'
 Plug 'hrsh7th/cmp-buffer'
-Plug 'hrsh7th/cmp-async-path'
+Plug 'hrsh7th/cmp-path'
 Plug 'hrsh7th/cmp-cmdline'
 Plug 'hrsh7th/cmp-copilot'
 Plug 'hrsh7th/nvim-cmp'
-" Plug 'ervandew/supertab'
 Plug 'github/copilot.vim'
 
 Plug 'google/vim-ft-bzl'

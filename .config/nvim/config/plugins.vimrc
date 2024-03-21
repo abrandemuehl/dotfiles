@@ -98,7 +98,6 @@ require('lsp')
 EOF
 
 
-
 "vim-go========================================================================"
 au FileType go nmap <Leader>i <Plug>(go-implements)
 au FileType go nmap <Leader>d <Plug>(go-doc-browser)
