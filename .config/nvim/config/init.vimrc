@@ -34,9 +34,7 @@ Plug 'hrsh7th/cmp-nvim-lsp'
 Plug 'hrsh7th/cmp-buffer'
 Plug 'hrsh7th/cmp-path'
 Plug 'hrsh7th/cmp-cmdline'
-Plug 'hrsh7th/cmp-copilot'
 Plug 'hrsh7th/nvim-cmp'
-Plug 'github/copilot.vim'
 
 Plug 'google/vim-ft-bzl'
 
@@ -52,6 +50,12 @@ Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build' }
 Plug 'BurntSushi/ripgrep'
 Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.4' }
+
+
+" Copilot
+Plug 'github/copilot.vim'
+Plug 'hrsh7th/cmp-copilot'
+Plug 'CopilotC-Nvim/CopilotChat.nvim', { 'branch': 'canary' }
 
 " Treesitter
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate; :TSInstall all'}

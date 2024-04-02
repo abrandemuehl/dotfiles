@@ -95,6 +95,8 @@ EOF
 
 lua <<EOF
 require('lsp')
+require('copilot')
+
 EOF
 
 
