@@ -3,4 +3,5 @@ require("CopilotChat").setup {
   window = {
     layout = 'float',
   },
+  context = 'buffers',
 }
