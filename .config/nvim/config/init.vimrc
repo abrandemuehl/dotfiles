@@ -40,6 +40,8 @@ Plug 'google/vim-ft-bzl'
 
 Plug 'kien/rainbow_parentheses.vim'
 
+Plug 'dgagn/diagflow.nvim'
+
 " Git
 Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'

@@ -96,6 +96,7 @@ EOF
 lua <<EOF
 require('lsp')
 require('copilot')
+require('diagflow_config')
 
 EOF
 
