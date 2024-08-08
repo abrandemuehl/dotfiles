@@ -55,8 +55,9 @@ Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.4' }
 
 
 " Copilot
-Plug 'github/copilot.vim'
-Plug 'hrsh7th/cmp-copilot'
+" Plug 'github/copilot.vim'
+Plug 'zbirenbaum/copilot.lua'
+Plug 'zbirenbaum/copilot-cmp'
 Plug 'CopilotC-Nvim/CopilotChat.nvim', { 'branch': 'canary' }
 
 " Treesitter

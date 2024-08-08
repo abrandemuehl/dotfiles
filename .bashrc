@@ -41,6 +41,10 @@ stty -ixon
 # For clear coloring
 # export PS1="\[\e[0;0m\]\u@\h:\[\e[0;32m\]\w$ \[\e[0;36m\]"
 export PS1="\u@\h:\w$ "
+parse_git_branch() {
+     git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1)/'
+}
+export PS1="\u@\h:\w \[\e[91m\]\$(parse_git_branch)\[\e[00m\]$ "
 
 alias gitcd="cd \"\$(git rev-parse --show-toplevel)\""
 
