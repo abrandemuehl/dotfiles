@@ -23,12 +23,9 @@ cmp.setup({
     -- documentation = cmp.config.window.bordered(),
   },
   mapping = cmp.mapping.preset.insert({
-    vim.keymap.set('n', '<leader>o', '<cmd>lua require("jump_to_dec_def").go_to()<CR>', opts),
     ["<Tab>"] = cmp.mapping(function(fallback)
       if cmp.visible() then
-        cmp.select_next_item()
-      elseif has_words_before() then
-        cmp.complete()
+        cmp.select_next_item({ behavior = cmp.SelectBehavior.Insert })
       else
         fallback()
       end
@@ -36,16 +33,28 @@ cmp.setup({
 
     ["<S-Tab>"] = cmp.mapping(function(fallback)
       if cmp.visible() then
-        cmp.select_prev_item()
+        cmp.select_prev_item( { behavior = cmp.SelectBehavior.Insert } )
       else
         fallback()
       end
     end, { "i", "s" }),
+
+    ["<CR>"] = cmp.mapping({
+       i = function(fallback)
+         if cmp.visible() and cmp.get_active_entry() then
+           cmp.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = false })
+         else
+           fallback()
+         end
+       end,
+       s = cmp.mapping.confirm({ select = true }),
+       c = cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = true }),
+     }),
   }),
   sources = cmp.config.sources({
+    { name = 'copilot' },
     { name = 'nvim_lsp' },
     { name = 'async_path' },
-    { name = 'copilot' },
   }, {
     { name = 'buffer' },
   })
@@ -74,6 +83,7 @@ require'lspconfig'.clangd.setup{
     "--header-insertion=iwyu",
     "--malloc-trim",
     "-j=4",
+    "--offset-encoding=utf-16",
     }
 }
 
