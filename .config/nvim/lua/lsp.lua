@@ -56,7 +56,7 @@ cmp.setup({
 require("mason").setup()
 
 require("mason-lspconfig").setup {
-    ensure_installed = { "clangd", "jinja_lsp", "lua_ls", "pyright", "vimls", "jsonls", "bzl" },
+    ensure_installed = { "clangd", "lua_ls", "pyright", "vimls", "jsonls", "bzl" },
     automatic_installation = true,
 }
 
@@ -80,6 +80,9 @@ require'lspconfig'.clangd.setup{
     }
 }
 
+require'lspconfig'.pyright.setup{
+}
+
 -- Set up lspconfig.
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
 vim.api.nvim_create_autocmd('LspAttach', {
@@ -97,3 +100,23 @@ vim.api.nvim_create_autocmd('LspAttach', {
 })
 
 
+-- Set up auto formatting
+local null_ls = require("null-ls")
+
+null_ls.setup({
+  sources = {
+    null_ls.builtins.formatting.ruff,
+  },
+  on_attach = function(client, bufnr)
+    if client.supports_method("textDocument/formatting") then
+      vim.api.nvim_clear_autocmds({ group = "LspFormatting", buffer = bufnr })
+      vim.api.nvim_create_autocmd("BufWritePre", {
+        group = vim.api.nvim_create_augroup("LspFormatting", {}),
+        buffer = bufnr,
+        callback = function()
+          vim.lsp.buf.format({ bufnr = bufnr, timeout_ms = 2000 })
+        end,
+      })
+    end
+  end,
+})
