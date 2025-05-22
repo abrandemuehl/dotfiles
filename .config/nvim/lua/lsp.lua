@@ -1,5 +1,5 @@
 -- Set up nvim-cmp.
-local cmp = require'cmp'
+local cmp = require 'cmp'
 
 cmp.setup({
   snippet = {
@@ -26,23 +26,23 @@ cmp.setup({
 
     ["<S-Tab>"] = cmp.mapping(function(fallback)
       if cmp.visible() then
-        cmp.select_prev_item( { behavior = cmp.SelectBehavior.Insert } )
+        cmp.select_prev_item({ behavior = cmp.SelectBehavior.Insert })
       else
         fallback()
       end
     end, { "i", "s" }),
 
     ["<CR>"] = cmp.mapping({
-       i = function(fallback)
-         if cmp.visible() and cmp.get_active_entry() then
-           cmp.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = false })
-         else
-           fallback()
-         end
-       end,
-       s = cmp.mapping.confirm({ select = true }),
-       c = cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = true }),
-     }),
+      i = function(fallback)
+        if cmp.visible() and cmp.get_active_entry() then
+          cmp.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = false })
+        else
+          fallback()
+        end
+      end,
+      s = cmp.mapping.confirm({ select = true }),
+      c = cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = true }),
+    }),
   }),
   sources = cmp.config.sources({
     { name = 'copilot' },
@@ -56,8 +56,8 @@ cmp.setup({
 require("mason").setup()
 
 require("mason-lspconfig").setup {
-    ensure_installed = { "clangd", "lua_ls", "pyright", "vimls", "jsonls", "bzl" },
-    automatic_installation = true,
+  ensure_installed = { "clangd", "lua_ls", "pyright", "vimls", "jsonls", "bzl" },
+  automatic_installation = true,
 }
 
 -- Hide all semantic highlights
@@ -67,7 +67,7 @@ end
 
 local lsp = vim.lsp
 
-require'lspconfig'.clangd.setup{
+require 'lspconfig'.clangd.setup {
   cmd = {
     "clangd-12",
     "--background-index",
@@ -77,10 +77,10 @@ require'lspconfig'.clangd.setup{
     "--malloc-trim",
     "-j=4",
     "--offset-encoding=utf-16",
-    }
+  }
 }
 
-require'lspconfig'.pyright.setup{
+require 'lspconfig'.pyright.setup {
 }
 
 -- Set up lspconfig.
@@ -100,23 +100,22 @@ vim.api.nvim_create_autocmd('LspAttach', {
 })
 
 
--- Set up auto formatting
-local null_ls = require("null-ls")
-
-null_ls.setup({
-  sources = {
-    null_ls.builtins.formatting.ruff,
-  },
-  on_attach = function(client, bufnr)
-    if client.supports_method("textDocument/formatting") then
-      vim.api.nvim_clear_autocmds({ group = "LspFormatting", buffer = bufnr })
-      vim.api.nvim_create_autocmd("BufWritePre", {
-        group = vim.api.nvim_create_augroup("LspFormatting", {}),
-        buffer = bufnr,
-        callback = function()
-          vim.lsp.buf.format({ bufnr = bufnr, timeout_ms = 2000 })
-        end,
-      })
-    end
-  end,
+-- Format on save
+-- https://www.mitchellhanberg.com/modern-format-on-save-in-neovim/
+vim.api.nvim_create_autocmd("LspAttach", {
+  group = vim.api.nvim_create_augroup("lsp", { clear = true }),
+  callback = function(args)
+    vim.api.nvim_create_autocmd("BufWritePre", {
+      buffer = args.buf,
+      callback = function()
+        vim.lsp.buf.format { async = false, id = args.data.client_id }
+      end,
+    })
+  end
 })
+
+vim.lsp.config('ruff', {})
+vim.lsp.enable('ruff')
+
+require 'lspconfig'.denols.setup {}
+vim.lsp.enable('denols')
