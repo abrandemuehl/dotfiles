@@ -58,14 +58,11 @@ require("mason").setup()
 require("mason-lspconfig").setup {
   ensure_installed = { "clangd", "lua_ls", "pyright", "vimls", "jsonls", "bzl" },
   automatic_installation = true,
+  automatic_enable = {
+    -- Don't automatically enable LSPs that have specific setup requirements
+    exclude = { "clangd", "pyright" },
+  }
 }
-
--- Hide all semantic highlights
-for _, group in ipairs(vim.fn.getcompletion("@lsp", "highlight")) do
-  vim.api.nvim_set_hl(0, group, {})
-end
-
-local lsp = vim.lsp
 
 require 'lspconfig'.clangd.setup {
   cmd = {
@@ -79,9 +76,16 @@ require 'lspconfig'.clangd.setup {
     "--offset-encoding=utf-16",
   }
 }
+require("lspconfig").pyright.setup({
+  on_attach = function(client, bufnr)
+    client.server_capabilities.documentFormattingProvider = false
+  end,
+})
 
-require 'lspconfig'.pyright.setup {
-}
+-- Hide all semantic highlights
+for _, group in ipairs(vim.fn.getcompletion("@lsp", "highlight")) do
+  vim.api.nvim_set_hl(0, group, {})
+end
 
 -- Set up lspconfig.
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
@@ -108,14 +112,20 @@ vim.api.nvim_create_autocmd("LspAttach", {
     vim.api.nvim_create_autocmd("BufWritePre", {
       buffer = args.buf,
       callback = function()
-        vim.lsp.buf.format { async = false, id = args.data.client_id }
+        -- Ensure the format happens before the write
+        vim.lsp.buf.format { async = false }
       end,
     })
   end
 })
 
-vim.lsp.config('ruff', {})
-vim.lsp.enable('ruff')
+require("lspconfig").ruff.setup({
+  on_attach = function(client)
+    -- Only enable if the server supports formatting
+    if client.name == "ruff" then
+      client.server_capabilities.documentFormattingProvider = true
+    end
+  end,
+})
 
 require 'lspconfig'.denols.setup {}
-vim.lsp.enable('denols')
