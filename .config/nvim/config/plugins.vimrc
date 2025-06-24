@@ -1,23 +1,3 @@
-"vim-codefmt==================================================================="
-au FileType * nmap <Leader>= :FormatCode<cr>
-augroup autoformat_settings
-  autocmd FileType bzl AutoFormatBuffer buildifier
-  autocmd FileType c,cpp AutoFormatBuffer clang-format
-  "autocmd FileType dart AutoFormatBuffer dartfmt
-  "autocmd FileType go AutoFormatBuffer gofmt
-  "autocmd FileType gn AutoFormatBuffer gn
-  " autocmd FileType html,css,json AutoFormatBuffer js-beautify
-  "autocmd FileType java AutoFormatBuffer google-java-format
-  autocmd FileType python AutoFormatBuffer autopep8
-  " Alternative: autocmd FileType python AutoFormatBuffer autopep8
-augroup END
-
-Glaive codefmt clang_format_style="file"
-Glaive codefmt clang_format_executable="/home/abrandemuehl/.local/bin/clang-format-4.0"
-Glaive codefmt buildifier_executable="/home/abrandemuehl/.local/bin/buildifier"
-
-"end vim-codefmt==============================================================="
-
 
 "tablify======================================================================="
 

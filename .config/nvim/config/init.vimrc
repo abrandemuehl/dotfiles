@@ -22,7 +22,6 @@ Plug 'unblevable/quick-scope'
 Plug 'tpope/vim-endwise'
 
 Plug 'google/vim-maktaba'
-Plug 'google/vim-codefmt'
 Plug 'google/vim-glaive'
 
 " Autocompletion stuff - Must have clangd installed
