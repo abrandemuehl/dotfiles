@@ -13,9 +13,7 @@ return {
             "hrsh7th/cmp-path",
             "zbirenbaum/copilot-cmp",
         },
-        config = function()
-            local cmp = require("cmp")
-            cmp.setup({
+        config = function() local cmp = require("cmp") cmp.setup({
                 mapping = cmp.mapping.preset.insert({
                     ["<Tab>"] = cmp.mapping(function(fallback)
                         if cmp.visible() then
@@ -57,7 +55,7 @@ return {
             require("mason").setup()
             require("mason-lspconfig").setup({
                 ensure_installed = {
-                    "clangd", "lua_ls", "pyright", "vimls", "jsonls", "bzl", "ruff", "denols"
+                    "clangd", "lua_ls", "pyright", "vimls", "jsonls", "bzl", "ruff", "denols", "protols"
                 },
                 automatic_installation = true,
                 automatic_enable = {
