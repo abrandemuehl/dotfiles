@@ -13,7 +13,9 @@ return {
             "hrsh7th/cmp-path",
             "zbirenbaum/copilot-cmp",
         },
-        config = function() local cmp = require("cmp") cmp.setup({
+        config = function()
+            local cmp = require("cmp")
+            cmp.setup({
                 mapping = cmp.mapping.preset.insert({
                     ["<Tab>"] = cmp.mapping(function(fallback)
                         if cmp.visible() then
@@ -135,6 +137,14 @@ return {
                     vim.keymap.set("n", "<C-k>", vim.lsp.buf.signature_help, opts)
                 end,
             })
+
+            vim.api.nvim_create_autocmd("CursorHold", {
+                group = vim.api.nvim_create_augroup("LspDiagnostics", { clear = true }),
+                callback = function()
+                    vim.diagnostic.open_float({ scope = "cursor" })
+                end,
+            })
+            vim.o.updatetime = 300
 
             vim.api.nvim_create_autocmd("LspAttach", {
                 group = vim.api.nvim_create_augroup("lsp", { clear = true }),
