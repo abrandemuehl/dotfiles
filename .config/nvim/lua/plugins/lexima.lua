@@ -1,0 +1,5 @@
+return {
+    {
+        "cohama/lexima.vim",
+    },
+}
